@@ -7,7 +7,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
-		CreateWindow createWindow = new CreateWindow("/fxml/MainWindow.fxml");
+		CreateWindow createWindow = new CreateWindow("/presentation/fxml/MainWindow.fxml");
 		createWindow.windowCreater();
 	}
 
