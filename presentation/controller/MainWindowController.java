@@ -38,7 +38,7 @@ public class MainWindowController implements Initializable {
 	}
 
 	public void btnFindSkills(ActionEvent event) {
-		createWindow = new CreateWindow("/fxml/FindEmployee.fxml");
+		createWindow = new CreateWindow("/presentation/fxml/FindEmployee.fxml");
 		createWindow.windowCreater();
 	}
 
@@ -47,12 +47,12 @@ public class MainWindowController implements Initializable {
 	}
 
 	public void btnDAS(ActionEvent event) {
-		createWindow = new CreateWindow("/fxml/DepartmentAndSkills.fxml");
+		createWindow = new CreateWindow("/presentation/fxml/DepartmentAndSkills.fxml");
 		createWindow.windowCreater();
 	}
 
 	public void btnEAS(ActionEvent event) {
-		createWindow = new CreateWindow("/fxml/EmployeeProfile.fxml");
+		createWindow = new CreateWindow("/presentation/fxml/EmployeeProfile.fxml");
 		createWindow.windowCreater();
 	}
 }

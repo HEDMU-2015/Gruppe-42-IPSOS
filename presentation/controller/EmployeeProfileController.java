@@ -34,7 +34,7 @@ public class EmployeeProfileController implements Initializable {
 	}
 
 	public void btnAddSkill(ActionEvent event) {
-		CreateWindow createWindow = new CreateWindow("/fxml/AddSkillToEmployee.fxml");
+		CreateWindow createWindow = new CreateWindow("/presentation/fxml/AddSkillToEmployee.fxml");
 		createWindow.windowCreater();
 	}
 
