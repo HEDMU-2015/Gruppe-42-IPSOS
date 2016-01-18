@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
+   <children>
+      <TableView fx:id="tableView" layoutX="10.0" layoutY="46.0" prefHeight="297.0" prefWidth="516.0">
+        <columns>
+          <TableColumn fx:id="name" prefWidth="172.0" text="Name" />
+          <TableColumn fx:id="email" prefWidth="218.0" text="Email" />
+            <TableColumn fx:id="skills" prefWidth="125.0" text="Skills" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnDAS" layoutX="116.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnDAS" prefHeight="44.0" prefWidth="143.0" text="Departments and Skills" />
+      <TextField fx:id="txtfieldName" layoutX="280.0" layoutY="11.0" prefHeight="25.0" prefWidth="143.0" />
+      <Button fx:id="btnSearch" layoutX="423.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnSearch" prefHeight="25.0" prefWidth="103.0" text="Search by Name" />
+      <Button fx:id="btnEAS" layoutX="277.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnEAS" prefHeight="44.0" prefWidth="143.0" text="Employee and Skill" />
+      <Button fx:id="btnFindSkills" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnFindSkills" text="Find Skills" />
+   </children>
+</AnchorPane>
