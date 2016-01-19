@@ -20,7 +20,7 @@ public interface Controller {
 	
 	public void addEmployeeSkill(Skill skill);
 	
-	public List<Employee> fetchEmployeeProfile (int id);
+	public EmployeeProfile fetchEmployeeProfile (int id);
 	
 	public List<Departments> fetchAllDepartments();
 }
