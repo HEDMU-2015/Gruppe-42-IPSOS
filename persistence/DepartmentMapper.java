@@ -13,6 +13,6 @@ public interface DepartmentMapper {
 	
 	public void updateDepartment(Department department, DataAccess da) throws PersistenceFailureException;
 	
-	public List fetchAllDepartments(DataAccess da)throws PersistenceFailureException;
+	public List<Department> fetchAllDepartments(DataAccess da)throws PersistenceFailureException;
 	
 }

@@ -13,6 +13,6 @@ public interface SkillMapper {
 	
 	public void updateSkill(Skill skill, DataAccess da) throws PersistenceFailureException;
 	
-	public List fetchDepartmentSkills(DataAccess da);
+	public List<Skill> fetchDepartmentSkills(DataAccess da);
 		
 }

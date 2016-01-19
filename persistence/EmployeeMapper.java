@@ -3,15 +3,16 @@ package persistence;
 import java.util.List;
 import java.sql.PreparedStatement;
 
+import domain.Employee;
 import domain.EmployeeProfile;
 import domain.Skill;
 import exceptions.PersistenceFailureException;
 
 public interface EmployeeMapper {
-//
-	public List findEmployee(List skills, DataAccess da) throws PersistenceFailureException;
+
+	public List<Employee> findEmployee(List skills, DataAccess da) throws PersistenceFailureException;
 	
-	public List findEmployeeByName(String name, DataAccess da) throws PersistenceFailureException;
+	public List<Employee> findEmployeeByName(String name, DataAccess da) throws PersistenceFailureException;
 	
 	public void addEmployeeSkill(Skill skill) throws PersistenceFailureException;
 	
