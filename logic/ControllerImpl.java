@@ -114,7 +114,7 @@ public class ControllerImpl implements Controller {
 		dm = new DepartmentMapperForSql();
 		try {
 			da = new DataAccessForSql();
-			dm = new DepartmentMapperForSql();
+			dm.updateDepartment(department, da);
 			da.commit();
 			da.close();
 		} catch (PersistenceConnectionFailureException pcfe) {
@@ -126,7 +126,7 @@ public class ControllerImpl implements Controller {
 	}
 
 	@Override
-	public List<Employee> findEmployee(List skills) {
+	public List<Employee> findEmployee(List<Skill> skills) {
 		DataAccess da = null;
 		List<Employee> employees = new ArrayList<>();
 		em = new EmployeeMapperForSql();
