@@ -9,7 +9,7 @@ import domain.Skill;
 import persistence.DataAccess;
 
 public interface Controller {
-//
+
 	public void createSkill(Skill skill);
 	
 	public void deleteSkill(Skill skill);
