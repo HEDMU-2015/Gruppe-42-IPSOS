@@ -19,6 +19,7 @@ public class IpsosFileWriter {
 		} catch (IOException e) {
 			//Should never happen!
 		}
+		
 	}
 	
 	public void write(String message) {
