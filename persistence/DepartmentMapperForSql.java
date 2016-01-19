@@ -9,7 +9,7 @@ import java.util.List;
 import domain.Department;
 import exceptions.PersistenceFailureException;
 //@Author Martin
-public class DerpartmentMapperForSql implements DepartmentMapper{
+public class DepartmentMapperForSql implements DepartmentMapper{
 
 	private final String CREATE_DEPARTMENT_SQL= "INSERT INTO departments(name,parent_id) VALUES(?,?)";
 	private final String DELETE_DEPARTMENT_SQL = "DELETE FROM department WHERE id= ?";
