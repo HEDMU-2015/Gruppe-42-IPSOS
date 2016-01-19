@@ -25,7 +25,7 @@ public interface Controller {
 	
 	public List<Department> fetchAllDepartments();
 
-	public List<Employee> findEmployee(List skills);
+	public List<Employee> findEmployee(List<Skill> skills);
 	
 	public List<Employee> findEmployeeByName(String name);
 	
