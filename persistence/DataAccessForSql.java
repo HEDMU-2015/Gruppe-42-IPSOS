@@ -18,6 +18,7 @@ public class DataAccessForSql implements DataAccess {
 			String connectionUri = props.get("connectionUri");
 			String dbUsername = props.get("dbUsername");
 			String dbPassword = props.get("dbPassword");
+			
 		} catch(FileNotFoundException exc) {
 			IpsosLogger.getInstance().error(exc);
 		}
