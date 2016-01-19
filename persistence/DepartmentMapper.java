@@ -3,7 +3,7 @@ package persistence;
 import java.util.List;
 import exceptions.PersistenceFailureException;
 
-public interface DepartmentMapperForSQL {
+public interface DepartmentMapper {
 	
 	public void createDepartment(Department department,DataAcces da) throws PersistenceFailureException;
 	

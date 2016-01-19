@@ -2,7 +2,7 @@ package persistence;
 
 import exceptions.PersistenceFailureException;
 
-public interface SkillMapperForSQL {
+public interface SkillMapper {
 
 	public void createSkill (Skill skill,DataAcces da) throws PersistenceFailureException;
 	

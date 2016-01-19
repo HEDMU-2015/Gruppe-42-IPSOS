@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 
 import exceptions.PersistenceFailureException;
 
-public interface EmployeeMapperForSQL {
+public interface EmployeeMapper {
 
 	public List<Employee> findEmployee(List<Skill> skills, DataAccess da) throws PersistenceFailureException;
 	
