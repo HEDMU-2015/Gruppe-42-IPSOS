@@ -8,19 +8,33 @@ public class Department {
 	
 	
 	public Department(int id, String name, String parent_id) {
-		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.parent_id = parent_id;
+		this.id = id;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public String getParentId() {
+	public int getId() {
+		return id;
+	}
+
+	public String getParent_id() {
 		return parent_id;
 	}
 
-	public int getId() {
-		return id;
+	public void setParent_id(String parent_id) {
+		this.parent_id = parent_id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	
