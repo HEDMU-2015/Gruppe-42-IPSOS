@@ -7,11 +7,13 @@ import domain.Department;
 import domain.Employee;
 import domain.EmployeeProfile;
 import domain.Skill;
+import exceptions.PersistenceCommitFailureException;
 import exceptions.PersistenceConnectionFailureException;
 import exceptions.PersistenceFailureException;
 import persistence.DataAccess;
 import persistence.DataAccessForSql;
 import persistence.DepartmentMapper;
+import persistence.DepartmentMapperForSql;
 import persistence.EmployeeMapper;
 import persistence.EmployeeMapperForSql;
 import persistence.SkillMapper;
@@ -22,7 +24,7 @@ public class ControllerImpl implements Controller {
 	private SkillMapper sm;
 	private DepartmentMapper dm;
 	private EmployeeMapper em;
-	
+
 	@Override
 	public void createSkill(Skill skill) {
 		DataAccess da = null;
@@ -37,6 +39,8 @@ public class ControllerImpl implements Controller {
 		} catch (PersistenceFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
 			da.rollback();
+		} catch (PersistenceCommitFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
 		}
 	}
 
@@ -54,6 +58,8 @@ public class ControllerImpl implements Controller {
 		} catch (PersistenceFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
 			da.rollback();
+		} catch (PersistenceCommitFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
 		}
 	}
 
@@ -71,6 +77,8 @@ public class ControllerImpl implements Controller {
 		} catch (PersistenceFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
 			da.rollback();
+		} catch (PersistenceCommitFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
 		}
 	}
 
@@ -88,6 +96,8 @@ public class ControllerImpl implements Controller {
 		} catch (PersistenceFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
 			da.rollback();
+		} catch (PersistenceCommitFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
 		}
 	}
 
@@ -105,6 +115,8 @@ public class ControllerImpl implements Controller {
 		} catch (PersistenceFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
 			da.rollback();
+		} catch (PersistenceCommitFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
 		}
 	}
 
@@ -122,6 +134,8 @@ public class ControllerImpl implements Controller {
 		} catch (PersistenceFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
 			da.rollback();
+		} catch (PersistenceCommitFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
 		}
 	}
 
@@ -136,6 +150,8 @@ public class ControllerImpl implements Controller {
 			da.close();
 		} catch (PersistenceFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
+		} catch (PersistenceConnectionFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
 		}
 		return employees;
 	}
@@ -149,6 +165,8 @@ public class ControllerImpl implements Controller {
 			da = new DataAccessForSql();
 			employeesByName = em.findEmployeeByName(name, da);
 			da.close();
+		} catch (PersistenceConnectionFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
 		} catch (PersistenceFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
 		}
@@ -166,6 +184,8 @@ public class ControllerImpl implements Controller {
 			da.close();
 		} catch (PersistenceFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
+		} catch (PersistenceConnectionFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
 		}
 	}
 
@@ -179,6 +199,8 @@ public class ControllerImpl implements Controller {
 			employeeProfile = em.fetchEmployeeProfile(id, da);
 			da.close();
 		} catch (PersistenceFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
+		} catch (PersistenceConnectionFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
 		}
 		return employeeProfile;
@@ -195,7 +217,10 @@ public class ControllerImpl implements Controller {
 			da.close();
 		} catch (PersistenceFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
+		} catch (PersistenceConnectionFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
 		}
+
 		return fetchAllDepartments;
 	}
 
@@ -209,6 +234,8 @@ public class ControllerImpl implements Controller {
 			fetchDepartmentSkills = sm.fetchDepartmentSkills(da);
 			da.close();
 		} catch (PersistenceFailureException exc) {
+			IpsosLogger.getInstance().error(exc);
+		} catch (PersistenceConnectionFailureException exc) {
 			IpsosLogger.getInstance().error(exc);
 		}
 		return fetchDepartmentSkills;
