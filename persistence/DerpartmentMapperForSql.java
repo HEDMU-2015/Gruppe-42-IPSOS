@@ -15,7 +15,7 @@ public class DerpartmentMapperForSql implements DepartmentMapper{
 	private final String DELETE_DEPARTMENT_SQL = "DELETE FROM department WHERE id= ?";
 	private final String UPDATE_DEPARTMENT_SQL = "UPDATE department SET name = ? WHERE id = ?";
 	private final String FETCH_ALL_DEPARTMENTS = "SELECT * FROM departments";
-	
+	//
 	@Override
 	public void createDepartment(Department department, DataAccess da) throws PersistenceFailureException {
 		PreparedStatement PreparedStatement = null;
