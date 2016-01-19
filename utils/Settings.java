@@ -4,9 +4,9 @@ public class Settings {
 	
 	public final static boolean LOGGER_ON = true;
 	public final static String ERROR_LOG_PATH = System.getProperty("user.dir") + System.lineSeparator() + "logs"
-			+ System.lineSeparator() + "errorLogPath.txt";
+			+ System.lineSeparator() + "error_log.txt";
 	public final static String INFO_LOG_PATH = System.getProperty("user.dir") + System.lineSeparator() + "logs"
-			+ System.lineSeparator() + "infoLogPath.txt";
+			+ System.lineSeparator() + "info_log.txt";
 	public final static String PROPERTIES_PATH = System.getProperty("user.dir") + System.lineSeparator() + "properties.txt"
 			+ System.lineSeparator() + "properties.properties";
 }
