@@ -24,7 +24,7 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 			statement = da.getConnection().prepareStatement(CREATE_DEPARTMENT_SQL);
 			
 			statement.setString(1,department.getName());
-			statement.setString(2,department.getParentId());
+			statement.setString(2,department.getParent_id());
 			statement.executeQuery();
 			statement.close();
 			
