@@ -81,7 +81,7 @@ public class DerpartmentMapperImpl implements DepartmentMapper{
 			while(resultSet.next()){
 				Department d = new Department(resultSet.getInt("id"),resultSet.getString("name"), resultSet.getString("parent_id"));
 				departments.add(d);
-				
+			
 			}
 			resultSet.close();
 			statement.close();
