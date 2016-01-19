@@ -3,7 +3,7 @@ package logic;
 import java.util.List;
 
 public interface controller {
-//
+
 	public void createSkill(Skill skill);
 	
 	public void deleteSkill(Skill skill);
