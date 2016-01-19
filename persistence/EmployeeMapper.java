@@ -10,15 +10,15 @@ import exceptions.PersistenceFailureException;
 
 public interface EmployeeMapper {
 //
-	public List<Employee> findEmployee(List skills, DataAccess da) throws PersistenceFailureException;
+	public List<Employee> findEmployee(List<Skill> skills, DataAccess da) throws PersistenceFailureException;
 	
 	public List<Employee> findEmployeeByName(String name, DataAccess da) throws PersistenceFailureException;
 	
 	public void addEmployeeSkill(Skill skill) throws PersistenceFailureException;
 	
-	public void setBindValues(List skills, PreparedStatement statement);
+	public void setBindValues(List<Skill> skills, PreparedStatement statement);
 	
-	public String createBindParams(List skills);
+	public String createBindParams(List<Skill> skills);
 	
 	public void removeEmployeeSkill(EmployeeProfile ep) throws PersistenceFailureException;
 	
