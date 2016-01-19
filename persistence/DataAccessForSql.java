@@ -1,9 +1,15 @@
+/**
+ * @author Tsvetelin Tsonev
+ */
 package persistence;
 
 import java.io.FileNotFoundException;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import exceptions.PersistenceCommitFailureException;
+import exceptions.PersistenceConnectionFailureException;
 import utils.IpsosLogger;
 import utils.Properties;
 import utils.Settings;
@@ -12,15 +18,18 @@ public class DataAccessForSql implements DataAccess {
 	
 	Connection connection = null;
 	
-	public DataAccessForSql() {
+	public DataAccessForSql() throws PersistenceConnectionFailureException {
 		try{
 			Properties	props = new Properties(Settings.PROPERTIES_PATH);
 			String connectionUri = props.get("connectionUri");
 			String dbUsername = props.get("dbUsername");
 			String dbPassword = props.get("dbPassword");
-			
+			connection = DriverManager.getConnection(connectionUri, dbUsername, dbPassword);
+			connection.setAutoCommit(false);
 		} catch(FileNotFoundException exc) {
 			IpsosLogger.getInstance().error(exc);
+		} catch(SQLException exc) {
+			throw new PersistenceConnectionFailureException("Failed to connect to database");
 		}
 	}
 	
@@ -31,20 +40,35 @@ public class DataAccessForSql implements DataAccess {
 
 	@Override
 	public void commit() throws PersistenceCommitFailureException {
-		// TODO Auto-generated method stub
-
+		if(connection != null) {
+			try{
+				connection.commit();
+			} catch(SQLException exc) {
+				throw new PersistenceCommitFailureException("Failed to commit transaction");
+			}
+		}
 	}
 
 	@Override
 	public void rollback() {
-		// TODO Auto-generated method stub
-
+		if(connection != null) {
+			try{
+				connection.rollback();
+			} catch(SQLException exc) {
+				// This should never happen
+			}
+		}
 	}
 
 	@Override
 	public void close() {
-		// TODO Auto-generated method stub
-
+		if(connection != null) {
+			try{
+				connection.close();
+			} catch(SQLException exc) {
+				// Should already be closed
+			}
+		}
 	}
 
 }
