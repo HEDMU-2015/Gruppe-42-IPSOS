@@ -17,7 +17,7 @@ public interface EmployeeMapper {
 	
 	public void setBindValues(List skills, PreparedStatement statement);
 	
-	public void createBindParams(List skills);
+	public String createBindParams(List skills);
 	
 	public void removeEmployeeSkill(EmployeeProfile ep) throws PersistenceFailureException;
 	
