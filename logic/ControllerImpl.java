@@ -1,8 +1,10 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import domain.Department;
+import domain.Employee;
 import domain.EmployeeProfile;
 import domain.Skill;
 import exceptions.PersistenceConnectionFailureException;
@@ -10,6 +12,7 @@ import exceptions.PersistenceFailureException;
 import persistence.DataAccess;
 import persistence.DepartmentMapper;
 import persistence.EmployeeMapper;
+import persistence.EmployeeMapperForSql;
 import persistence.SkillMapper;
 import utils.IpsosLogger;
 
@@ -105,7 +108,7 @@ public class ControllerImpl implements Controller {
 		DataAccess da = null;
 		dm = new DepartmentMapperForSql();
 		try {
-			dm.updateDepartment(department, da);
+			dm = new DepartmentMapperForSql();
 			da.commit();
 			da.close();
 		} catch (PersistenceConnectionFailureException pcfe) {
@@ -117,35 +120,89 @@ public class ControllerImpl implements Controller {
 	}
 
 	@Override
-	public List findEmployee(List skills) {
-		
-		
-		
-		return null;
+	public List<Employee> findEmployee(List skills) {
+		DataAccess da = null;
+		List<Employee> employees = new ArrayList<>();
+		em = new EmplpoyeeMapperForSql();
+		try {
+			employees = em.findEmployee(skills, da);
+			da.close();
+		} catch (PersistenceConnectionFailureException pcfe) {
+			IpsosLogger.getInstance().error(pcfe);
+		}
+		return employees;
 	}
 
 	@Override
-	public List findEmployeeByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Employee> findEmployeeByName(String name) {
+		DataAccess da = null;
+		List<Employee> employeesByName = new ArrayList<>();
+		em = new EmplpoyeeMapperForSql();
+		try {
+			employeesByName = em.findEmployeeByName(name, da);
+			da.close();
+		} catch (PersistenceConnectionFailureException pcfe) {
+			IpsosLogger.getInstance().error(pcfe);
+		}
+		return employeesByName;
 	}
 
 	@Override
 	public void addEmployeeSkill(Skill skill) {
-		// TODO Auto-generated method stub
-
+		DataAccess da = null;
+		dm = new EmployeeMapperForSql();
+		try {
+			dm.addEmployeeSkill(skill, da);
+			da.commit();
+			da.close();
+		} catch (PersistenceConnectionFailureException pcfe) {
+			IpsosLogger.getInstance().error(pcfe);
+		} catch (PersistenceFailureException pfe) {
+			IpsosLogger.getInstance().error(pfe);
+			da.rollback();
+		}
 	}
 
 	@Override
 	public EmployeeProfile fetchEmployeeProfile(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		DataAccess da = null;
+		em = new EmplpoyeeMapperForSql();
+		EmployeeProfile employeeProfile;
+		try {
+			employeeProfile = em.fetchEmployeeProfile(id, da);
+			da.close();
+		} catch (PersistenceConnectionFailureException pcfe) {
+			IpsosLogger.getInstance().error(pcfe);
+		}
+		return employeeProfile;
 	}
 
 	@Override
-	public List fetchAllDepartments() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Department> fetchAllDepartments() {
+		DataAccess da = null;
+		List<Department> fetchAllDepartments = new ArrayList<>();
+		dm = new DepartmentMapperForSql();
+		try {
+			fetchAllDepartments = dm.fetchAllDepartments(da);
+			da.close();
+		} catch (PersistenceConnectionFailureException pcfe) {
+			IpsosLogger.getInstance().error(pcfe);
+		}
+		return fetchAllDepartments;
+	}
+
+	@Override
+	public List<Skill> fetchDepartmentSkills() {
+		DataAccess da = null;
+		List<Skill> fetchDepartmentSkills = new ArrayList<>();
+		dm = new SkillMapperForSql();
+		try {
+			fetchDepartmentSkills = sm.fetchDepartmentSkills(da);
+			da.close();
+		} catch (PersistenceConnectionFailureException pcfe) {
+			IpsosLogger.getInstance().error(pcfe);
+		}
+		return fetchDepartmentSkills;
 	}
 
 }
