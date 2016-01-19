@@ -16,7 +16,7 @@ import utils.Settings;
 
 public class DataAccessForSql implements DataAccess {
 	
-	Connection connection = null;
+	private Connection connection = null;
 	
 	public DataAccessForSql() throws PersistenceConnectionFailureException {
 		try{
