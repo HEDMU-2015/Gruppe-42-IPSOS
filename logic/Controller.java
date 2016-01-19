@@ -8,7 +8,7 @@ import domain.Skill;
 
 public interface Controller {
 
-	public void createSkille(Skill skill);
+	public void createSkill(Skill skill);
 	
 	public void deleteSkill(Skill skill);
 	
