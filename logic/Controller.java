@@ -1,5 +1,11 @@
 package logic;
 
+import java.util.List;
+
+import domain.Department;
+import domain.EmployeeProfile;
+import domain.Skill;
+
 public interface Controller {
 
 	public void createSkille(Skill skill);
@@ -14,13 +20,13 @@ public interface Controller {
 	
 	public void updateDepartment(Department department);
 
-	public List<Employee> findEmployee(List<Skills>);
+	public List findEmployee(List skills);
 	
-	public List<Employee> findEmployeeByName(String name);
+	public List findEmployeeByName(String name);
 	
 	public void addEmployeeSkill(Skill skill);
 	
 	public EmployeeProfile fetchEmployeeProfile (int id);
 	
-	public List<Departments> fetchAllDepartments();
+	public List fetchAllDepartments();
 }

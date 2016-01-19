@@ -1,6 +1,8 @@
 package persistence;
 
 import java.util.List;
+
+import domain.Department;
 import exceptions.PersistenceFailureException;
 
 public interface DepartmentMapper {
@@ -11,6 +13,6 @@ public interface DepartmentMapper {
 	
 	public void updateDepartment(Department department, DataAcces da) throws PersistenceFailureException;
 	
-	public List<Departments> fetchAllDepartments(DataAcces da)throws PersistenceFailureException;
+	public List fetchAllDepartments(DataAcces da)throws PersistenceFailureException;
 	
 }
