@@ -15,7 +15,7 @@ public interface Controller {
 	
 	public void updateSkill(Skill skill);
 	
-	public List<Skill> fetchDepartmentSkills();
+	public List<Skill> fetchDepartmentSkills(int id);
 	
 	public void createDepartment(Department department);
 	
@@ -27,9 +27,9 @@ public interface Controller {
 
 	public List<Employee> findEmployee(List<Skill> skills);
 	
-	public List<Employee> findEmployeeByName(String name);
+	public List<EmployeeProfile> findEmployeeByName(String name);
 	
-	public void addEmployeeSkill(Skill skill);
+	public void addEmployeeSkill(Skill skill, Employee employee);
 	
 	public EmployeeProfile fetchEmployeeProfile (int id);
 }
