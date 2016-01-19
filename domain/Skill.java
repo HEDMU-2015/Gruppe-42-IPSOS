@@ -1,7 +1,7 @@
 package domain;
 
 public class Skill {
-
+ 
 	int id;
 	String name;
 	
