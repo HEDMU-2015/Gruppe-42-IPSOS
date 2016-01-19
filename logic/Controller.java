@@ -6,10 +6,9 @@ import domain.Department;
 import domain.Employee;
 import domain.EmployeeProfile;
 import domain.Skill;
-import persistence.DataAccess;
 
 public interface Controller {
-//
+
 	public void createSkill(Skill skill);
 	
 	public void deleteSkill(Skill skill);
@@ -26,12 +25,11 @@ public interface Controller {
 	
 	public List<Department> fetchAllDepartments();
 
-	public List<Employee> findEmployee(List skills);
+	public List<Employee> findEmployee(List<Skill> skills);
 	
 	public List<Employee> findEmployeeByName(String name);
 	
 	public void addEmployeeSkill(Skill skill);
 	
 	public EmployeeProfile fetchEmployeeProfile (int id);
-	
 }
