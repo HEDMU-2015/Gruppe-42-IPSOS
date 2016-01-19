@@ -15,10 +15,11 @@ public class IpsosFileWriter {
 			throw new FileNotFoundException("File not found: " + filePath);
 		}
 		try {
-			bw = new BufferedWriter(new FileWriter(filePath));
+			bw = new BufferedWriter(new FileWriter(filePath, true));
 		} catch (IOException e) {
 			//Should never happen!
 		}
+		
 	}
 	
 	public void write(String message) {
