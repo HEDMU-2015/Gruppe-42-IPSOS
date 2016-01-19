@@ -6,7 +6,7 @@ import domain.Department;
 import exceptions.PersistenceFailureException;
 
 public interface DepartmentMapper {
-	
+//	
 	public void createDepartment(Department department,DataAccess da) throws PersistenceFailureException;
 	
 	public void deleteDepartment(Department department, DataAccess da) throws PersistenceFailureException;
