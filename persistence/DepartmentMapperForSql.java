@@ -18,15 +18,15 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 	//
 	@Override
 	public void createDepartment(Department department, DataAccess da) throws PersistenceFailureException {
-		PreparedStatement PreparedStatement = null;
+		PreparedStatement statement = null;
 		
 		try {
-			PreparedStatement = da.getConnection().prepareStatement(CREATE_DEPARTMENT_SQL);
+			statement = da.getConnection().prepareStatement(CREATE_DEPARTMENT_SQL);
 			
-			PreparedStatement.setString(1,department.getName());
-			PreparedStatement.setString(2,department.getParentId());
-			PreparedStatement.executeQuery();
-			PreparedStatement.close();
+			statement.setString(1,department.getName());
+			statement.setString(2,department.getParentId());
+			statement.executeQuery();
+			statement.close();
 			
 			
 		} catch (SQLException e)  {
@@ -37,12 +37,12 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 
 	@Override
 	public void deleteDepartment(Department department, DataAccess da) throws PersistenceFailureException {
-		PreparedStatement PreparedStatement = null;
+		PreparedStatement statement = null;
 		try {
-			PreparedStatement = da.getConnection().prepareStatement(DELETE_DEPARTMENT_SQL);
-			PreparedStatement.setInt(1,department.getId());
-			PreparedStatement.executeQuery();
-			PreparedStatement.close();
+			statement = da.getConnection().prepareStatement(DELETE_DEPARTMENT_SQL);
+			statement.setInt(1,department.getId());
+			statement.executeQuery();
+			statement.close();
 			
 			
 		} catch (SQLException e) {
@@ -54,13 +54,13 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 
 	@Override
 	public void updateDepartment(Department department, DataAccess da) throws PersistenceFailureException {
-		PreparedStatement PreparedStatement;
+		PreparedStatement statement;
 		try{
-			PreparedStatement = da.getConnection().prepareStatement(UPDATE_DEPARTMENT_SQL);
-			PreparedStatement.setString(1,department.getName());
-			PreparedStatement.setInt(1,department.getId());
-			PreparedStatement.executeQuery();
-			PreparedStatement.close();
+			statement = da.getConnection().prepareStatement(UPDATE_DEPARTMENT_SQL);
+			statement.setString(1,department.getName());
+			statement.setInt(1,department.getId());
+			statement.executeQuery();
+			statement.close();
 		}catch(SQLException e){
 			throw new PersistenceFailureException("Query has failed!");
 		}
