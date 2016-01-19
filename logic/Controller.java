@@ -6,7 +6,6 @@ import domain.Department;
 import domain.Employee;
 import domain.EmployeeProfile;
 import domain.Skill;
-import persistence.DataAccess;
 
 public interface Controller {
 
@@ -33,5 +32,4 @@ public interface Controller {
 	public void addEmployeeSkill(Skill skill);
 	
 	public EmployeeProfile fetchEmployeeProfile (int id);
-	
 }

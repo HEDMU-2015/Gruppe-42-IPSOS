@@ -10,6 +10,7 @@ import domain.Skill;
 import exceptions.PersistenceConnectionFailureException;
 import exceptions.PersistenceFailureException;
 import persistence.DataAccess;
+import persistence.DataAccessForSql;
 import persistence.DepartmentMapper;
 import persistence.EmployeeMapper;
 import persistence.EmployeeMapperForSql;
@@ -21,13 +22,13 @@ public class ControllerImpl implements Controller {
 	SkillMapper sm;
 	DepartmentMapper dm;
 	EmployeeMapper em;
-	DataAccess da;
-
+	
 	@Override
 	public void createSkill(Skill skill) {
 		DataAccess da = null;
 		sm = new SkillMapperForSql();
 		try {
+			da = new DataAccessForSql();
 			sm.createSkill(skill, da);
 			da.commit();
 			da.close();
@@ -44,6 +45,7 @@ public class ControllerImpl implements Controller {
 		DataAccess da = null;
 		sm = new SkillMapperForSql();
 		try {
+			da = new DataAccessForSql();
 			sm.deleteSkill(skill, da);
 			da.commit();
 			da.close();
@@ -60,6 +62,7 @@ public class ControllerImpl implements Controller {
 		DataAccess da = null;
 		sm = new SkillMapperForSql();
 		try {
+			da = new DataAccessForSql();
 			sm.updateSkill(skill, da);
 			da.commit();
 			da.close();
@@ -76,6 +79,7 @@ public class ControllerImpl implements Controller {
 		DataAccess da = null;
 		dm = new DepartmentMapperForSql();
 		try {
+			da = new DataAccessForSql();
 			dm.createDepartment(department, da);
 			da.commit();
 			da.close();
@@ -92,6 +96,7 @@ public class ControllerImpl implements Controller {
 		DataAccess da = null;
 		dm = new DepartmentMapperForSql();
 		try {
+			da = new DataAccessForSql();
 			dm.deleteDepartment(department, da);
 			da.commit();
 			da.close();
@@ -108,6 +113,7 @@ public class ControllerImpl implements Controller {
 		DataAccess da = null;
 		dm = new DepartmentMapperForSql();
 		try {
+			da = new DataAccessForSql();
 			dm = new DepartmentMapperForSql();
 			da.commit();
 			da.close();
@@ -123,8 +129,9 @@ public class ControllerImpl implements Controller {
 	public List<Employee> findEmployee(List skills) {
 		DataAccess da = null;
 		List<Employee> employees = new ArrayList<>();
-		em = new EmplpoyeeMapperForSql();
+		em = new EmployeeMapperForSql();
 		try {
+			da = new DataAccessForSql();
 			employees = em.findEmployee(skills, da);
 			da.close();
 		} catch (PersistenceConnectionFailureException pcfe) {
@@ -137,8 +144,9 @@ public class ControllerImpl implements Controller {
 	public List<Employee> findEmployeeByName(String name) {
 		DataAccess da = null;
 		List<Employee> employeesByName = new ArrayList<>();
-		em = new EmplpoyeeMapperForSql();
+		em = new EmployeeMapperForSql();
 		try {
+			da = new DataAccessForSql();
 			employeesByName = em.findEmployeeByName(name, da);
 			da.close();
 		} catch (PersistenceConnectionFailureException pcfe) {
@@ -150,9 +158,10 @@ public class ControllerImpl implements Controller {
 	@Override
 	public void addEmployeeSkill(Skill skill) {
 		DataAccess da = null;
-		dm = new EmployeeMapperForSql();
+		em = new EmployeeMapperForSql();
 		try {
-			dm.addEmployeeSkill(skill, da);
+			da = new DataAccessForSql();
+			em.addEmployeeSkill(skill, da);
 			da.commit();
 			da.close();
 		} catch (PersistenceConnectionFailureException pcfe) {
@@ -166,9 +175,10 @@ public class ControllerImpl implements Controller {
 	@Override
 	public EmployeeProfile fetchEmployeeProfile(int id) {
 		DataAccess da = null;
-		em = new EmplpoyeeMapperForSql();
+		em = new EmployeeMapperForSql();
 		EmployeeProfile employeeProfile;
 		try {
+			da = new DataAccessForSql();
 			employeeProfile = em.fetchEmployeeProfile(id, da);
 			da.close();
 		} catch (PersistenceConnectionFailureException pcfe) {
@@ -183,6 +193,7 @@ public class ControllerImpl implements Controller {
 		List<Department> fetchAllDepartments = new ArrayList<>();
 		dm = new DepartmentMapperForSql();
 		try {
+			da = new DataAccessForSql();
 			fetchAllDepartments = dm.fetchAllDepartments(da);
 			da.close();
 		} catch (PersistenceConnectionFailureException pcfe) {
@@ -197,6 +208,7 @@ public class ControllerImpl implements Controller {
 		List<Skill> fetchDepartmentSkills = new ArrayList<>();
 		dm = new SkillMapperForSql();
 		try {
+			da = new DataAccessForSql();
 			fetchDepartmentSkills = sm.fetchDepartmentSkills(da);
 			da.close();
 		} catch (PersistenceConnectionFailureException pcfe) {
