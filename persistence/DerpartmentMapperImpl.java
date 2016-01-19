@@ -88,8 +88,7 @@ public class DerpartmentMapperImpl implements DepartmentMapper{
 		}catch(SQLException e){
 			throw new PersistenceFailureException("Query has failed!");
 		}
-		
-		
+				
 		
 		return departments;
 	}
