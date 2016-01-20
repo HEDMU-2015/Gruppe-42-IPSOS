@@ -15,8 +15,6 @@ import persistence.SkillMapperForSql;
 
 public class SkillMapperForSqlTest {
 
-
-
 	@Test
 	public void getByIdTest() {
 		try {
@@ -29,14 +27,19 @@ public class SkillMapperForSqlTest {
 		} catch (PersistenceConnectionFailureException | PersistenceFailureException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
-	
-//	@Test
-//	public void createSkillTest() {
-//		Skill skill = new Skill("Python");
-//		DataAccess da;
-//		
-//	}
+
+	@Test
+	public void createSkillTest() {
+		try {
+			DataAccess da = new DataAccessForSql();
+			Skill skill = new Skill("Python");
+			
+		} catch (PersistenceConnectionFailureException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }

@@ -1,0 +1,35 @@
+CREATE TABLE departments(
+id INT IDENTITY,
+name VARCHAR(255) NOT NULL,
+parent_id INT REFERENCES departments(id) ON DELETE CASCADE,
+);
+
+CREATE UNIQUE INDEX uidx_department_name ON departments(name);
+
+CREATE TABLE skills(
+id INT IDENTITY,
+name VARCHAR(255) NOT NULL,
+department_id INT REFERENCES departments(id) ON DELETE CASCADE
+);
+
+CREATE UNIQUE INDEX uidx_skill_name ON skills(name);
+
+CREATE TABLE employees (
+id INT IDENTITY,
+name VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL
+);
+
+CREATE UNIQUE INDEX uidx_employees_email ON employees(email);
+
+CREATE TABLE employee_skills (
+employee_id INT REFERENCES employees(id) ON DELETE CASCADE,
+skill_id INT REFERENCES skills(id) ON DELETE CASCADE
+);
+
+SELECT employees.name, employees.email,  COUNT(id)
+AS skills_count
+FROM employees
+INNER JOIN employee_skills ON(employees.id = employee_skills.employee_id)
+WHERE employee_skills.skill_id IN(?,?...) GROUP BY employees.email, employees.name
+ORDER BY skills_count DESC
