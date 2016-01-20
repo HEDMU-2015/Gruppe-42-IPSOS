@@ -20,7 +20,6 @@ public class DataAccessForSql implements DataAccess {
 	
 	public DataAccessForSql() throws PersistenceConnectionFailureException {
 		try{
-			System.out.println(Settings.PROPERTIES_PATH);
 			Properties	props = new Properties(Settings.PROPERTIES_PATH);
 			String connectionUri = props.get("connectionUri");
 			String dbUsername = props.get("dbUsername");
@@ -29,6 +28,15 @@ public class DataAccessForSql implements DataAccess {
 			connection.setAutoCommit(false);
 		} catch(FileNotFoundException exc) {
 			IpsosLogger.getInstance().error(exc);
+		} catch(SQLException exc) {
+			throw new PersistenceConnectionFailureException("Failed to connect to database");
+		}
+	}
+	
+	public DataAccessForSql(String connectionUri, String dbUsername, String dbPassword) throws PersistenceConnectionFailureException {
+		try{
+			connection = DriverManager.getConnection(connectionUri, dbUsername, dbPassword);
+			connection.setAutoCommit(false);
 		} catch(SQLException exc) {
 			throw new PersistenceConnectionFailureException("Failed to connect to database");
 		}
