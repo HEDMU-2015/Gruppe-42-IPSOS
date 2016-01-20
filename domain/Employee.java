@@ -11,6 +11,11 @@ public class Employee {
 		this.name = name;
 		this.email = email;
 	}
+	
+	public Employee(String name, String email) {
+		this.name = name;
+		this.email = email;
+	}
 
 	public int getId() {
 		return id;

@@ -3,17 +3,20 @@ package domain;
 public class Department {
 
 	String name;
-	String parent_id;
+	int parent_id;
 	int id;
 	
 	
-	public Department(int id, String name, String parent_id) {
+	public Department(int id, String name, int parent_id) {
 		this.name = name;
 		this.parent_id = parent_id;
 		this.id = id;
 	}
 	
-	
+	public Department(String name, int parent_id) {
+		this.name = name;
+		this.parent_id = parent_id;
+	}
 
 	public String getName() {
 		return name;
@@ -23,11 +26,11 @@ public class Department {
 		return id;
 	}
 
-	public String getParent_id() {
+	public int getParent_id() {
 		return parent_id;
 	}
 
-	public void setParent_id(String parent_id) {
+	public void setParent_id(int parent_id) {
 		this.parent_id = parent_id;
 	}
 

@@ -24,5 +24,5 @@ public interface EmployeeMapper {
 	
 	public EmployeeProfile fetchEmployeeProfile(int id, DataAccess da) throws PersistenceFailureException;
 	
-	public void getById(int id);
+	public Employee getById(int id, DataAccess da) throws PersistenceFailureException;
 }

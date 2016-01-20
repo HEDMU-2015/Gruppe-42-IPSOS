@@ -10,6 +10,10 @@ public class EmployeeProfile {
 	public EmployeeProfile(int id, String name, String email) {
 		employee = new Employee(id, name, email);
 	}
+	
+	public EmployeeProfile(String name, String email) {
+		employee = new Employee(name, email);
+	}
 
 	public int getId() {
 		return employee.getId();

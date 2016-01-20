@@ -162,7 +162,24 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 	}
 
 	@Override
-	public void getById(int id) {
+	public Employee getById(int id, DataAccess da) throws PersistenceFailureException {
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Employee employee = null;
 		String sql = "SELECT * FROM skills WHERE id = ?";
+		try {
+			statement = da.getConnection().prepareStatement(sql);
+			statement.setInt(1, id);
+			resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				employee = new Employee(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
+				resultSet.close();
+				statement.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceFailureException("Query has failed!");
+		}
+		return employee;
 	}
 }

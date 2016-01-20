@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.Department;
+import domain.Skill;
 import exceptions.PersistenceFailureException;
 //@Author Martin
 public class DepartmentMapperForSql implements DepartmentMapper{
@@ -24,7 +25,7 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 			statement = da.getConnection().prepareStatement(CREATE_DEPARTMENT_SQL);
 			
 			statement.setString(1,department.getName());
-			statement.setString(2,department.getParent_id());
+			statement.setInt(2,department.getParent_id());
 			statement.executeQuery();
 			statement.close();
 			
@@ -79,7 +80,7 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 			statement = da.getConnection().prepareStatement(FETCH_ALL_DEPARTMENTS);
 			resultSet = statement.executeQuery();
 			while(resultSet.next()){
-				Department d = new Department(resultSet.getInt("id"),resultSet.getString("name"), resultSet.getString("parent_id"));
+				Department d = new Department(resultSet.getInt("id"),resultSet.getString("name"), resultSet.getInt("parent_id"));
 				departments.add(d);
 			
 			}
@@ -94,8 +95,25 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 	}
 	
 	@Override
-	public void getById(int id) {
+	public Department getById(int id, DataAccess da) throws PersistenceFailureException {
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Department department = null;
 		String sql = "SELECT * FROM skills WHERE id = ?";
+		try {
+			statement = da.getConnection().prepareStatement(sql);
+			statement.setInt(1, id);
+			resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				department = new Department(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("parent_id"));
+				resultSet.close();
+				statement.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new PersistenceFailureException("Query has failed!");
+		}
+		return department;
 	}
 
 }
