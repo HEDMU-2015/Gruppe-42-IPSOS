@@ -33,3 +33,16 @@ FROM employees
 INNER JOIN employee_skills ON(employees.id = employee_skills.employee_id)
 WHERE employee_skills.skill_id IN(?,?...) GROUP BY employees.email, employees.name
 ORDER BY skills_count DESC
+
+
+SELECT e.id, e.name, e.email,
+GROUP_CONCAT(s.name SEPARATOR ', ') AS skills_names
+FROM employees AS e LEFT JOIN employee_skills AS skills ON e.id = skills.employee_id
+LEFT JOIN skills AS s ON s.id = skills.skill_id WHERE LOWER(e.name) = 'rasmus'
+GROUP BY e.id, e.name, e.email
+
+
+SELECT s.id, s.name, d.name FROM skills AS s INNER JOIN employee_skills AS es
+ON s.id = es.skill_id INNER JOIN employees AS e ON e.id = es.employee_id
+INNER JOIN departments AS d ON s.department_id = d.id
+WHERE employee_id = ?

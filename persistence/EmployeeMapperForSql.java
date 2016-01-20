@@ -50,30 +50,24 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 	}
 
 	@Override
-	public List<EmployeeProfile> findEmployeeByName(String name, DataAccess da) throws PersistenceFailureException {
+	public List<Employee> findEmployeeByName(String name, DataAccess da) throws PersistenceFailureException {
 		PreparedStatement statement;
 		ResultSet resultSet = null;
-		List<EmployeeProfile> profileList = new ArrayList<>();
+		List<Employee> profileList = new ArrayList<>();
 		try {
 			statement = da.getConnection()
-					.prepareStatement("SELECT e.id, e.name, e.email, skills.skill_id, s.name"
-							+ "FROM employees AS e LEFT JOIN employee_skills AS skills ON e.id = skills.employee_id "
-							+ "LEFT JOIN skills AS s ON s.id = skills.skill_id WHERE LOWER(e.name) = ?");
+					.prepareStatement("SELECT * FROM employees WHERE LOWER(name) = ?");
 			statement.setString(1, name);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
-				EmployeeProfile e = new EmployeeProfile(resultSet.getInt("id"), resultSet.getString("name"),
+				Employee e = new Employee(resultSet.getInt("id"), resultSet.getString("name"),
 						resultSet.getString("email"));
-				List<Skill> skillList = new ArrayList<>();
-				Skill skill = new Skill(resultSet.getString("skill_name"));
-				skill.setId(resultSet.getInt("skill_id"));
-				skillList.add(skill);
-				e.setSkillList(skillList);
-				profileList.add(e);
-			}
+					profileList.add(e);
+				}
 			resultSet.close();
 			statement.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new PersistenceFailureException("Query has failed, try again!");
 		}
 
@@ -140,13 +134,17 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 	public EmployeeProfile fetchEmployeeProfile(int id, DataAccess da) throws PersistenceFailureException {
 		PreparedStatement statement;
 		ResultSet resultSet;
-		EmployeeProfile e;
+		Employee e;
 		
 		try {
 			statement = da.getConnection().prepareStatement("SELECT * FROM employees WHERE employee_id = ?");
 			resultSet = statement.executeQuery();
-			e = new EmployeeProfile(resultSet.getInt("id"), resultSet.getString("name"),
-					resultSet.getString("email"));
+			if (resultSet.next()) {
+				e = new Employee(resultSet.getInt("id"), resultSet.getString("name"),
+						resultSet.getString("email"));
+			}
+			statement = da.getConnection().prepareStatement("SELECT * FROM skills AS s INNER JOIN employee_skills AS es "
+					+ "ON s.id = es.skill_id INNER JOIN employees AS e ON e.id = es.employee_id");
 			List<Skill> skillList = new ArrayList<>();
 			Skill skill = new Skill(resultSet.getString("skill_name"));
 			skill.setId(resultSet.getInt("skill_id"));
