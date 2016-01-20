@@ -1,6 +1,8 @@
 package utils;
 import java.io.FileNotFoundException;
 
+import logic.Settings;
+
 
 public class IpsosLogger {
 

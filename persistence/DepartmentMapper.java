@@ -15,4 +15,6 @@ public interface DepartmentMapper {
 	
 	public List<Department> fetchAllDepartments(DataAccess da)throws PersistenceFailureException;
 	
+	public void getById(int id);
+	
 }

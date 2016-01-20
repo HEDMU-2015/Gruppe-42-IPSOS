@@ -92,5 +92,10 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 		
 		return departments;
 	}
+	
+	@Override
+	public void getById(int id) {
+		String sql = "SELECT * FROM skills WHERE id = ?";
+	}
 
 }

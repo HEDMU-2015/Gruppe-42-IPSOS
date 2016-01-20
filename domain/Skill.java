@@ -5,8 +5,7 @@ public class Skill {
 	int id;
 	String name;
 	
-	public Skill(int id, String name) {
-		this.id = id;
+	public Skill(String name) {
 		this.name = name;
 	}
 

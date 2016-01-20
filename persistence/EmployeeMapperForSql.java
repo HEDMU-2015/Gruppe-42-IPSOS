@@ -65,7 +65,8 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 				EmployeeProfile e = new EmployeeProfile(resultSet.getInt("id"), resultSet.getString("name"),
 						resultSet.getString("email"));
 				List<Skill> skillList = new ArrayList<>();
-				Skill skill = new Skill(resultSet.getInt("skill_id"), resultSet.getString("skill_name"));
+				Skill skill = new Skill(resultSet.getString("skill_name"));
+				skill.setId(resultSet.getInt("skill_id"));
 				skillList.add(skill);
 				e.setSkillList(skillList);
 				profileList.add(e);
@@ -147,7 +148,8 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 			e = new EmployeeProfile(resultSet.getInt("id"), resultSet.getString("name"),
 					resultSet.getString("email"));
 			List<Skill> skillList = new ArrayList<>();
-			Skill skill = new Skill(resultSet.getInt("skill_id"), resultSet.getString("skill_name"));
+			Skill skill = new Skill(resultSet.getString("skill_name"));
+			skill.setId(resultSet.getInt("skill_id"));
 			skillList.add(skill);
 			e.setSkillList(skillList);
 			resultSet.close();
@@ -159,4 +161,8 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 		return e;
 	}
 
+	@Override
+	public void getById(int id) {
+		String sql = "SELECT * FROM skills WHERE id = ?";
+	}
 }

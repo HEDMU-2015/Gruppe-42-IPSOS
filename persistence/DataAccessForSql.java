@@ -10,9 +10,9 @@ import java.sql.SQLException;
 
 import exceptions.PersistenceCommitFailureException;
 import exceptions.PersistenceConnectionFailureException;
+import logic.Settings;
 import utils.IpsosLogger;
 import utils.Properties;
-import utils.Settings;
 
 public class DataAccessForSql implements DataAccess {
 	
@@ -20,10 +20,12 @@ public class DataAccessForSql implements DataAccess {
 	
 	public DataAccessForSql() throws PersistenceConnectionFailureException {
 		try{
+			System.out.println(Settings.PROPERTIES_PATH);
 			Properties	props = new Properties(Settings.PROPERTIES_PATH);
 			String connectionUri = props.get("connectionUri");
 			String dbUsername = props.get("dbUsername");
 			String dbPassword = props.get("dbPassword");
+			System.out.println(connectionUri + dbUsername + dbPassword);
 			connection = DriverManager.getConnection(connectionUri, dbUsername, dbPassword);
 			connection.setAutoCommit(false);
 		} catch(FileNotFoundException exc) {
