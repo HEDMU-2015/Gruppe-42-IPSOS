@@ -91,9 +91,13 @@ public class SkillMapperForSql implements SkillMapper {
 			statement = da.getConnection().prepareStatement(sql);
 			statement.setInt(1, id);
 			resultSet = statement.executeQuery();
-			skill = new Skill(resultSet.getString("name"));
-			skill.setId(resultSet.getInt("id"));
+			if (resultSet.next()) {
+				skill = new Skill(resultSet.getInt("id"), resultSet.getString("name"));
+				resultSet.close();
+				statement.close();
+			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new PersistenceFailureException("Query has failed!");
 		}
 		return skill;

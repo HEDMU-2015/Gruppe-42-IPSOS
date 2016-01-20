@@ -25,7 +25,6 @@ public class DataAccessForSql implements DataAccess {
 			String connectionUri = props.get("connectionUri");
 			String dbUsername = props.get("dbUsername");
 			String dbPassword = props.get("dbPassword");
-			System.out.println(connectionUri + dbUsername + dbPassword);
 			connection = DriverManager.getConnection(connectionUri, dbUsername, dbPassword);
 			connection.setAutoCommit(false);
 		} catch(FileNotFoundException exc) {

@@ -12,6 +12,8 @@ public class Department {
 		this.parent_id = parent_id;
 		this.id = id;
 	}
+	
+	
 
 	public String getName() {
 		return name;
