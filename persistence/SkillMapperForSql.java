@@ -14,9 +14,9 @@ import exceptions.PersistenceFailureException;
 
 public class SkillMapperForSql implements SkillMapper {
 
-	private final String CREATE_SKILL_SQL = "INSERT INTO skills(name) VALUES (?)";
+	private final String CREATE_SKILL_SQL = "INSERT INTO skills(name, department_id) VALUES (?,?)";
 	private final String DELETE_SKILL_SQL = "DELETE FROM skills WHERE id = ?";
-	private final String UPDATE_SKILL_SQL = "UPDATE skill SET name = ? WHERE id = ?";
+	private final String UPDATE_SKILL_SQL = "UPDATE skills SET name = ? WHERE id = ?";
 	private final String FETCH_DEPARTMENT_SKILLS = "SELECT * FROM skills WHERE department_id = ?";
 
 	@Override
@@ -25,9 +25,11 @@ public class SkillMapperForSql implements SkillMapper {
 		try {
 			statement = da.getConnection().prepareStatement(CREATE_SKILL_SQL);
 			statement.setString(1, skill.getName());
+			statement.setInt(2, skill.getDepartmentId());
 			statement.execute();
 			statement.close();
 		} catch (SQLException exc) {
+			exc.printStackTrace();
 			throw new PersistenceFailureException("Query has failed!");
 		}
 	}
@@ -50,8 +52,8 @@ public class SkillMapperForSql implements SkillMapper {
 		PreparedStatement statement = null;
 		try {
 			statement = da.getConnection().prepareStatement(UPDATE_SKILL_SQL);
-			statement.setInt(1, skill.getId());
-			statement.setString(2, skill.getName());
+			statement.setString(1, skill.getName());
+			statement.setInt(2, skill.getId());
 			statement.execute();
 			statement.close();
 		} catch (SQLException exc) {
@@ -92,10 +94,10 @@ public class SkillMapperForSql implements SkillMapper {
 			statement.setInt(1, id);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				skill = new Skill(resultSet.getInt("id"), resultSet.getString("name"));
-				resultSet.close();
-				statement.close();
+				skill = new Skill(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("department_id"));
 			}
+			resultSet.close();
+			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new PersistenceFailureException("Query has failed!");
