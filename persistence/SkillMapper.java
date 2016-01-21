@@ -4,7 +4,7 @@ import domain.Skill;
 import exceptions.PersistenceFailureException;
 
 public interface SkillMapper {
-
+//
 	public void createSkill(Skill skill, DataAccess da) throws PersistenceFailureException;
 	
 	public void deleteSkill(Skill skill, DataAccess da) throws PersistenceFailureException;
