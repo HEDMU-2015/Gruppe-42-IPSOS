@@ -4,7 +4,6 @@ import java.util.List;
 import java.sql.PreparedStatement;
 
 import domain.Employee;
-import domain.EmployeeProfile;
 import domain.Skill;
 import exceptions.PersistenceFailureException;
 
@@ -23,4 +22,7 @@ public interface EmployeeMapper {
 	public void removeEmployeeSkill(Employee employee, Skill skill, DataAccess da) throws PersistenceFailureException;
 	
 	public Employee getById(int id, DataAccess da) throws PersistenceFailureException;
+	
+	public Employee getEmployeeProfile(int id, DataAccess da) throws PersistenceFailureException;
+	
 }

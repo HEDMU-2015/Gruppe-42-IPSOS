@@ -14,9 +14,9 @@
         </columns>
       </TableView>
       <Button fx:id="btnDAS" layoutX="116.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnDAS" prefHeight="44.0" prefWidth="143.0" text="Departments and Skills" />
-      <TextField fx:id="txtfieldName" layoutX="280.0" layoutY="11.0" prefHeight="25.0" prefWidth="143.0" />
-      <Button fx:id="btnSearch" layoutX="423.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnSearch" prefHeight="25.0" prefWidth="103.0" text="Search by Name" />
+      <TextField fx:id="txtfieldName" layoutX="222.0" layoutY="11.0" prefHeight="25.0" prefWidth="143.0" />
+      <Button fx:id="btnSearchEmployeeByName" layoutX="368.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnSearchEmployeeByName" prefHeight="25.0" prefWidth="157.0" text="Search employee by name" />
       <Button fx:id="btnEAS" layoutX="277.0" layoutY="353.0" mnemonicParsing="false" onAction="#btnEAS" prefHeight="44.0" prefWidth="143.0" text="Employee and Skill" />
-      <Button fx:id="btnFindSkills" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnFindSkills" text="Find Skills" />
+      <Button fx:id="btnFindEmployee" layoutX="10.0" layoutY="11.0" mnemonicParsing="false" onAction="#btnFindEmployee" text="Find employee by skills" />
    </children>
 </AnchorPane>

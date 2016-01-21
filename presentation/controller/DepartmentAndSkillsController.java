@@ -8,8 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TreeView;
+import presentation.AbstractFXMLController;
+import presentation.ControlledScreen;
+import presentation.ScreenController;
 
-public class DepartmentAndSkillsController implements Initializable {
+public class DepartmentAndSkillsController implements Initializable, ControlledScreen {
 
 	@FXML
 	private TreeView<String> treeView;
@@ -25,6 +28,8 @@ public class DepartmentAndSkillsController implements Initializable {
 
 	@FXML
 	private Button btnChange;
+
+	private ScreenController screenController;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -45,5 +50,10 @@ public class DepartmentAndSkillsController implements Initializable {
 
 	public void btnChange(ActionEvent event) {
 
+	}
+	
+	@Override
+	public void setScreenController(ScreenController screenController) {
+		this.screenController = screenController;
 	}
 }

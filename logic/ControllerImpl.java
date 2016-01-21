@@ -5,11 +5,7 @@ import java.util.List;
 
 import domain.Department;
 import domain.Employee;
-import domain.EmployeeProfile;
 import domain.Skill;
-import exceptions.PersistenceCommitFailureException;
-import exceptions.PersistenceConnectionFailureException;
-import exceptions.PersistenceFailureException;
 import persistence.DataAccess;
 import persistence.DataAccessForSql;
 import persistence.DepartmentMapper;
@@ -129,9 +125,9 @@ public class ControllerImpl implements Controller {
 	}
 
 	@Override
-	public List<EmployeeProfile> findEmployeeByName(String name) {
+	public List<Employee> findEmployeeByName(String name) {
 		DataAccess da = null;
-		List<EmployeeProfile> employeesByName = new ArrayList<>();
+		List<Employee> employeesByName = new ArrayList<>();
 		em = new EmployeeMapperForSql();
 		try {
 			da = new DataAccessForSql();
@@ -158,18 +154,19 @@ public class ControllerImpl implements Controller {
 	}
 
 	@Override
-	public EmployeeProfile fetchEmployeeProfile(int id) {
+	public Employee fetchEmployee(int id) {
 		DataAccess da = null;
 		em = new EmployeeMapperForSql();
-		EmployeeProfile employeeProfile = null;
+		Employee employee = null;
+		List<Skill> skills = new ArrayList<>();
 		try {
 			da = new DataAccessForSql();
-			employeeProfile = em.fetchEmployeeProfile(id, da);
+			employee = em.fetchEmployee(skills, da);
 			da.close();
 		} catch (Exception exc){
 			IpsosLogger.getInstance().error(exc);
 		}
-		return employeeProfile;
+		return employee;
 	}
 
 	@Override

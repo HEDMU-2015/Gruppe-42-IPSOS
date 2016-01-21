@@ -9,9 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import presentation.AbstractFXMLController;
+import presentation.ControlledScreen;
 import presentation.CreateWindow;
+import presentation.ScreenController;
+import presentation.Screens;
 
-public class MainWindowController implements Initializable {
+public class MainWindowController implements Initializable, ControlledScreen {
 
 	@FXML
 	private Button btnFindSkills;
@@ -31,28 +35,30 @@ public class MainWindowController implements Initializable {
 	@FXML
 	private Button btnEAS;
 
-	CreateWindow createWindow;
+	ScreenController screenController;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 	}
 
-	public void btnFindSkills(ActionEvent event) {
-		createWindow = new CreateWindow("/presentation/fxml/FindEmployee.fxml");
-		createWindow.windowCreater();
+	public void btnFindEmployee(ActionEvent event) {
+		screenController.setScreen("findEmployee");
 	}
 
-	public void btnSearch(ActionEvent event) {
-
+	public void btnSearchEmployeeByName(ActionEvent event) {
+		
 	}
 
 	public void btnDAS(ActionEvent event) {
-		createWindow = new CreateWindow("/presentation/fxml/DepartmentAndSkills.fxml");
-		createWindow.windowCreater();
+		screenController.setScreen("departmentAndSkills");
 	}
 
 	public void btnEAS(ActionEvent event) {
-		createWindow = new CreateWindow("/presentation/fxml/EmployeeProfile.fxml");
-		createWindow.windowCreater();
+		screenController.setScreen("employeeProfile");
+	}
+
+	@Override
+	public void setScreenController(ScreenController screenController) {
+		this.screenController = screenController;
 	}
 }

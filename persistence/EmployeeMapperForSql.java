@@ -6,15 +6,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.Department;
 import domain.Employee;
-import domain.EmployeeProfile;
 import domain.Skill;
+import exceptions.PersistenceConnectionFailureException;
 import exceptions.PersistenceFailureException;
 
 public class EmployeeMapperForSql implements EmployeeMapper {
 
 	private final static String ADD_EMPLOYEE_SKILL_SQL = "INSERT INTO employee_skills (employee_id, skill_id) VALUES (?, ?)";
 	private final static String REMOVE_EMPLOYEE_SKILL_SQL = "DELETE FROM employee_skills WHERE employee_id = ? AND skill_id = ?";
+	private final static String GET_EMPLOYEE_PROFILE = "SELECT e.id, e.name, e.email, s.id AS skill_id, s.name AS skill_name, "
+			+ "d.id AS department_id, d.name AS department_name, d.parent_id "
+			+ "FROM employees AS e INNER JOIN employee_skills AS es ON e.id = es.employee_id "
+			+ "INNER JOIN skills AS s ON es.skill_id = s.id "
+			+ "INNER JOIN departments AS d ON d.id = s.department_id "
+			+ "WHERE e.id = 1";
 
 	@Override
 	public List<Employee> findEmployee(List<Skill> skills, DataAccess da) throws PersistenceFailureException {
@@ -55,15 +62,14 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 		ResultSet resultSet = null;
 		List<Employee> profileList = new ArrayList<>();
 		try {
-			statement = da.getConnection()
-					.prepareStatement("SELECT * FROM employees WHERE LOWER(name) = ?");
+			statement = da.getConnection().prepareStatement("SELECT * FROM employees WHERE LOWER(name) = ?");
 			statement.setString(1, name);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				Employee e = new Employee(resultSet.getInt("id"), resultSet.getString("name"),
 						resultSet.getString("email"));
-					profileList.add(e);
-				}
+				profileList.add(e);
+			}
 			resultSet.close();
 			statement.close();
 		} catch (SQLException e) {
@@ -131,52 +137,55 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 	}
 
 	@Override
-	public EmployeeProfile fetchEmployeeProfile(int id, DataAccess da) throws PersistenceFailureException {
-		PreparedStatement statement;
-		ResultSet resultSet;
-		Employee e;
-		
-		try {
-			statement = da.getConnection().prepareStatement("SELECT * FROM employees WHERE employee_id = ?");
-			resultSet = statement.executeQuery();
-			if (resultSet.next()) {
-				e = new Employee(resultSet.getInt("id"), resultSet.getString("name"),
-						resultSet.getString("email"));
-			}
-			statement = da.getConnection().prepareStatement("SELECT * FROM skills AS s INNER JOIN employee_skills AS es "
-					+ "ON s.id = es.skill_id INNER JOIN employees AS e ON e.id = es.employee_id");
-			List<Skill> skillList = new ArrayList<>();
-			Skill skill = new Skill(resultSet.getString("skill_name"));
-			skill.setId(resultSet.getInt("skill_id"));
-			skillList.add(skill);
-			e.setSkillList(skillList);
-			resultSet.close();
-			statement.close();
-		} catch (SQLException exc) {
-			throw new PersistenceFailureException("Query has failed!");
-		}
-
-		return e;
-	}
-
-	@Override
 	public Employee getById(int id, DataAccess da) throws PersistenceFailureException {
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		Employee employee = null;
-		String sql = "SELECT * FROM skills WHERE id = ?";
+		String sql = "SELECT * FROM employees WHERE id = ?";
 		try {
 			statement = da.getConnection().prepareStatement(sql);
 			statement.setInt(1, id);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				employee = new Employee(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
+				employee = new Employee(resultSet.getInt("id"), resultSet.getString("name"),
+						resultSet.getString("email"));
 				resultSet.close();
 				statement.close();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new PersistenceFailureException("Query has failed!");
+		}
+		return employee;
+	}
+	
+	@Override
+	public Employee getEmployeeProfile(int id, DataAccess da) throws PersistenceFailureException {
+		
+
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		Employee employee = null;
+		List<Skill> skillList = new ArrayList<>();
+		try {
+			da = new DataAccessForSql();
+			statement = da.getConnection().prepareStatement(GET_EMPLOYEE_PROFILE);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				if (employee == null) {
+					employee = new Employee(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("email"));
+				}
+				Skill skill = new Skill(resultSet.getInt("skill_id"), resultSet.getString("skill_name"));
+				Department department = new Department(resultSet.getInt("department_id"),
+						resultSet.getString("department_name"), resultSet.getInt("parent_id"));
+				skill.setDepartment(department);
+				skillList.add(skill);
+			}
+			employee.setSkills(skillList);
+		} catch (PersistenceConnectionFailureException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return employee;
 	}

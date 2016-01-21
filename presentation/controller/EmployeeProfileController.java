@@ -9,9 +9,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeView;
+import presentation.AbstractFXMLController;
+import presentation.ControlledScreen;
 import presentation.CreateWindow;
+import presentation.ScreenController;
 
-public class EmployeeProfileController implements Initializable {
+public class EmployeeProfileController implements Initializable, ControlledScreen {
 
 	@FXML
 	private TreeView<String> department, skill, treeView;
@@ -28,6 +31,8 @@ public class EmployeeProfileController implements Initializable {
 	@FXML
 	private Button btnRemoveSkill;
 
+	private ScreenController screenController;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -42,4 +47,8 @@ public class EmployeeProfileController implements Initializable {
 
 	}
 
+	@Override
+	public void setScreenController(ScreenController screenController) {
+		this.screenController = screenController;
+	}
 }

@@ -4,7 +4,6 @@ import java.util.List;
 
 import domain.Department;
 import domain.Employee;
-import domain.EmployeeProfile;
 import domain.Skill;
 
 public interface Controller {
@@ -27,9 +26,9 @@ public interface Controller {
 
 	public List<Employee> findEmployee(List<Skill> skills);
 	
-	public List<EmployeeProfile> findEmployeeByName(String name);
+	public List<Employee> findEmployeeByName(String name);
 	
 	public void addEmployeeSkill(Skill skill, Employee employee);
 	
-	public EmployeeProfile fetchEmployeeProfile (int id);
+	public Employee fetchEmployee (int id);
 }
