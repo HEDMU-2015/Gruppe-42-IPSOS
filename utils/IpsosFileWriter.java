@@ -29,4 +29,12 @@ public class IpsosFileWriter {
 			e.printStackTrace();
 		}
 	}
+	
+	public void close() {
+		try {
+			bw.close();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
+	}
 }
