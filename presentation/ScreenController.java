@@ -31,10 +31,9 @@ public class ScreenController extends StackPane {
 	}
 
 	public void setScreen(String name) {
-		
 		if (!this.getChildren().isEmpty()) {
-			this.getChildren().add(0, map.get(name));
 			this.getChildren().remove(getChildren().get(0));
+			this.getChildren().add(0, map.get(name));
 		} else {
 			this.getChildren().add(0, map.get(name));
 			
