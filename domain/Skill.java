@@ -2,13 +2,13 @@ package domain;
 
 public class Skill {
  
-	int id, departmentId;
+	int id;
 	String name;
+	Department department;
 	
 	public Skill(int id, String name, int departmentId) {
 		this.id = id;
 		this.name = name;
-		this.departmentId = departmentId;
 	}
 	
 	public Skill(String name) {
@@ -31,14 +31,13 @@ public class Skill {
 		this.name = name;
 	}
 
-	public int getDepartmentId() {
-		return departmentId;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setDepartmentId(int departmentId) {
-		this.departmentId = departmentId;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
-	
 	
 	
 }

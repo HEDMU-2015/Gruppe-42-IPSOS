@@ -1,10 +1,14 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee {
 
 	private int id;
 	private String name;
 	private String email;
+	private List<Skill> skills = new ArrayList<Skill>();
 	
 	public Employee(int id, String name, String email) {
 		this.id = id;
@@ -41,5 +45,14 @@ public class Employee {
 		this.email = email;
 	}
 
+	public List<Skill> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<Skill> skills) {
+		this.skills = skills;
+	}
+
+	
 	
 }
