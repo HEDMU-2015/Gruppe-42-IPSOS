@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.Department;
-import domain.Skill;
 import exceptions.PersistenceFailureException;
 //@Author Martin
 public class DepartmentMapperForSql implements DepartmentMapper{
