@@ -10,7 +10,7 @@ import domain.Department;
 import exceptions.PersistenceFailureException;
 //@Author Martin
 public class DepartmentMapperForSql implements DepartmentMapper{
-
+//
 	private final String CREATE_DEPARTMENT_SQL= "INSERT INTO departments(name,parent_id) VALUES(?,?)";
 	private final String DELETE_DEPARTMENT_SQL = "DELETE FROM departments WHERE id= ?";
 	private final String UPDATE_DEPARTMENT_SQL = "UPDATE departments SET name = ? WHERE id = ?";

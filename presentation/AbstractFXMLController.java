@@ -6,6 +6,6 @@ public abstract class AbstractFXMLController {
 	
 	public void setScreenController(ScreenController screenController) {
 		this.screenController = screenController;
-		//
+		
 	}
 }

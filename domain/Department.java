@@ -1,7 +1,7 @@
 package domain;
 
 public class Department {
-
+//
 	String name;
 	int parent_id;
 	int id;

@@ -1,6 +1,7 @@
 package presentation;
 
 public enum Screens {
+	//
 	MAIN_WINDOW("../presentation/fxml/MainWindow.fxml"),
 	ADD_SKILL_TO_EMPLOYEE("../presentation/fxml/AddSkillToEmployee.fxml"),
 	DEPARTMENT_AND_SKILLS("../presentation/fxml/DepartmentAndSkills.fxml"),

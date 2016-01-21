@@ -13,7 +13,7 @@ import exceptions.PersistenceConnectionFailureException;
 import exceptions.PersistenceFailureException;
 
 public class EmployeeMapperForSql implements EmployeeMapper {
-
+//
 	private final static String ADD_EMPLOYEE_SKILL_SQL = "INSERT INTO employee_skills (employee_id, skill_id) VALUES (?, ?)";
 	private final static String REMOVE_EMPLOYEE_SKILL_SQL = "DELETE FROM employee_skills WHERE employee_id = ? AND skill_id = ?";
 	private final static String GET_EMPLOYEE_PROFILE = "SELECT e.id, e.name, e.email, s.id AS skill_id, s.name AS skill_name, "

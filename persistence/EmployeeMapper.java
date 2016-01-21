@@ -8,7 +8,7 @@ import domain.Skill;
 import exceptions.PersistenceFailureException;
 
 public interface EmployeeMapper {
-//
+
 	public List<Employee> findEmployee(List<Skill> skills, DataAccess da) throws PersistenceFailureException;
 	
 	public List<Employee> findEmployeeByName(String name, DataAccess da) throws PersistenceFailureException;

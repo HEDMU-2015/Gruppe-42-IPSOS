@@ -14,7 +14,7 @@ import persistence.DataAccess;
 import persistence.DataAccessForSql;
 
 public class Test {
-
+//
 	public static void main(String[] args) {
 		Employee e = Test.test();
 		for (Skill skill : e.getSkills()) {
