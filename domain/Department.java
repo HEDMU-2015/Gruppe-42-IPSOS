@@ -13,9 +13,8 @@ public class Department {
 		this.id = id;
 	}
 	
-	public Department(String name, int parent_id) {
+	public Department(String name) {
 		this.name = name;
-		this.parent_id = parent_id;
 	}
 
 	public String getName() {

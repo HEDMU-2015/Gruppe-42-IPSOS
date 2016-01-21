@@ -16,5 +16,7 @@ public interface SkillMapper {
 	public List<Skill> fetchDepartmentSkills(int id, DataAccess da) throws PersistenceFailureException;
 	
 	public Skill getById(int id, DataAccess da) throws PersistenceFailureException;
+	
+	public List<Skill> getEmployeeSkills(int id, DataAccess da) throws PersistenceFailureException;
 		
 }

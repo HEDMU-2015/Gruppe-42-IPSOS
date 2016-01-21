@@ -12,7 +12,7 @@ public interface EmployeeMapper {
 //
 	public List<Employee> findEmployee(List<Skill> skills, DataAccess da) throws PersistenceFailureException;
 	
-	public List<EmployeeProfile> findEmployeeByName(String name, DataAccess da) throws PersistenceFailureException;
+	public List<Employee> findEmployeeByName(String name, DataAccess da) throws PersistenceFailureException;
 	
 	public void addEmployeeSkill(Employee employee, Skill skill, DataAccess da) throws PersistenceFailureException;
 	
@@ -21,8 +21,6 @@ public interface EmployeeMapper {
 	public String createBindParams(List<Skill> skills);
 	
 	public void removeEmployeeSkill(Employee employee, Skill skill, DataAccess da) throws PersistenceFailureException;
-	
-	public EmployeeProfile fetchEmployeeProfile(int id, DataAccess da) throws PersistenceFailureException;
 	
 	public Employee getById(int id, DataAccess da) throws PersistenceFailureException;
 }

@@ -13,8 +13,8 @@ import exceptions.PersistenceFailureException;
 public class DepartmentMapperForSql implements DepartmentMapper{
 
 	private final String CREATE_DEPARTMENT_SQL= "INSERT INTO departments(name,parent_id) VALUES(?,?)";
-	private final String DELETE_DEPARTMENT_SQL = "DELETE FROM department WHERE id= ?";
-	private final String UPDATE_DEPARTMENT_SQL = "UPDATE department SET name = ? WHERE id = ?";
+	private final String DELETE_DEPARTMENT_SQL = "DELETE FROM departments WHERE id= ?";
+	private final String UPDATE_DEPARTMENT_SQL = "UPDATE departments SET name = ? WHERE id = ?";
 	private final String FETCH_ALL_DEPARTMENTS = "SELECT * FROM departments";
 	//
 	@Override 
@@ -28,8 +28,6 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 			statement.setInt(2,department.getParent_id());
 			statement.execute();
 			statement.close();
-			
-			
 		} catch (SQLException e)  {
 			throw new PersistenceFailureException("Query has failed!");
 		}		
@@ -42,10 +40,8 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 		try {
 			statement = da.getConnection().prepareStatement(DELETE_DEPARTMENT_SQL);
 			statement.setInt(1,department.getId());
-			statement.executeQuery();
+			statement.execute();
 			statement.close();
-			
-			
 		} catch (SQLException e) {
 			throw new PersistenceFailureException("Query has failed!");
 			
@@ -59,8 +55,8 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 		try{
 			statement = da.getConnection().prepareStatement(UPDATE_DEPARTMENT_SQL);
 			statement.setString(1,department.getName());
-			statement.setInt(1,department.getId());
-			statement.executeQuery();
+			statement.setInt(2,department.getId());
+			statement.execute();
 			statement.close();
 		}catch(SQLException e){
 			throw new PersistenceFailureException("Query has failed!");
@@ -99,13 +95,15 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		Department department = null;
-		String sql = "SELECT * FROM skills WHERE id = ?";
+		String sql = "SELECT * FROM departments WHERE id = ?";
 		try {
 			statement = da.getConnection().prepareStatement(sql);
 			statement.setInt(1, id);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				department = new Department(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("parent_id"));
+				department = new Department(resultSet.getString("name"));
+				department.setId(resultSet.getInt("id"));
+				department.setParent_id(resultSet.getInt("parent_id"));
 				resultSet.close();
 				statement.close();
 			}
