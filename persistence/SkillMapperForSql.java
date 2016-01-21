@@ -11,7 +11,7 @@ import domain.Skill;
 import exceptions.PersistenceFailureException;
 
 public class SkillMapperForSql implements SkillMapper {
-//
+
 	private final String CREATE_SKILL_SQL = "INSERT INTO skills(name, department_id) VALUES (?,?)";
 	private final String DELETE_SKILL_SQL = "DELETE FROM skills WHERE id = ?";
 	private final String UPDATE_SKILL_SQL = "UPDATE skills SET name = ? WHERE id = ?";
