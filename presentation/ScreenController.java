@@ -20,7 +20,6 @@ public class ScreenController extends StackPane {
 	public void loadScreen(String name, Screens fxmlPath) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath.getPath()));
-			System.out.println(fxmlPath.getPath());
 			Parent screen = (Parent) loader.load();
 			ControlledScreen cs = (ControlledScreen) loader.getController();
 			cs.setScreenController(this);
@@ -34,14 +33,16 @@ public class ScreenController extends StackPane {
 	public void setScreen(String name) {
 		
 		if (!this.getChildren().isEmpty()) {
-			Node currentWindow = this.getChildren().get(0);
-			Node newWindow = map.get(name);
-			this.getChildren().add(0, newWindow);
-			this.getChildren().remove(currentWindow);
+			this.getChildren().add(0, map.get(name));
+			this.getChildren().remove(getChildren().get(0));
 		} else {
 			this.getChildren().add(0, map.get(name));
 			
 		}
+	}
+	
+	public Node getScreen(String name) {
+		return map.get(name);
 	}
 
 }
