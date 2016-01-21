@@ -25,6 +25,7 @@ public class IpsosFileWriter {
 	public void write(String message) {
 		 try {
 			bw.write(message);
+			close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
