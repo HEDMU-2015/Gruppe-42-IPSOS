@@ -6,7 +6,8 @@ public enum Screens {
 	ADD_SKILL_TO_EMPLOYEE("../presentation/fxml/AddSkillToEmployee.fxml"),
 	DEPARTMENT_AND_SKILLS("../presentation/fxml/DepartmentAndSkills.fxml"),
 	EMPLOYEE_PROFILE("../presentation/fxml/EmployeeProfile.fxml"),
-	FIND_EMPLOYEE("../presentation/fxml/FindEmployee.fxml");
+	FIND_EMPLOYEE("../presentation/fxml/FindEmployee.fxml"),
+	MENU("../presentation/fxml/Menu.fxml");
 	
 	private String fxmlPath;
 
