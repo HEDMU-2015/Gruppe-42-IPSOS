@@ -42,7 +42,8 @@ LEFT JOIN skills AS s ON s.id = skills.skill_id WHERE LOWER(e.name) = 'rasmus'
 GROUP BY e.id, e.name, e.email
 
 
-SELECT s.id, s.name, d.name FROM skills AS s INNER JOIN employee_skills AS es
-ON s.id = es.skill_id INNER JOIN employees AS e ON e.id = es.employee_id
-INNER JOIN departments AS d ON s.department_id = d.id
-WHERE employee_id = ?
+SELECT e.name, e.email, s.id AS skill_id, s.name, d.name, d.id AS department_id FROM employees AS e
+INNER JOIN employee_skills AS es ON e.id = es.employee_id
+INNER JOIN skills AS s ON es.skill_id = s.id
+INNER JOIN departments AS d ON d.id = s.department_id
+WHERE e.id = 1

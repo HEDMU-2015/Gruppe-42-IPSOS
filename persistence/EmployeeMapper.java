@@ -22,7 +22,5 @@ public interface EmployeeMapper {
 	
 	public void removeEmployeeSkill(Employee employee, Skill skill, DataAccess da) throws PersistenceFailureException;
 	
-	public EmployeeProfile fetchEmployeeProfile(int id, DataAccess da) throws PersistenceFailureException;
-	
 	public Employee getById(int id, DataAccess da) throws PersistenceFailureException;
 }
