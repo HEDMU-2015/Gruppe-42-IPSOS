@@ -154,14 +154,13 @@ public class ControllerImpl implements Controller {
 	}
 
 	@Override
-	public Employee fetchEmployee(int id) {
+	public Employee getEmployeeProfile(int id) {
 		DataAccess da = null;
 		em = new EmployeeMapperForSql();
 		Employee employee = null;
-		List<Skill> skills = new ArrayList<>();
 		try {
 			da = new DataAccessForSql();
-			employee = em.fetchEmployee(skills, da);
+			employee = em.getEmployeeProfile(id, da);
 			da.close();
 		} catch (Exception exc){
 			IpsosLogger.getInstance().error(exc);
@@ -185,19 +184,19 @@ public class ControllerImpl implements Controller {
 		return fetchAllDepartments;
 	}
 
-	@Override
-	public List<Skill> fetchDepartmentSkills(int id) {
-		DataAccess da = null;
-		List<Skill> fetchDepartmentSkills = new ArrayList<>();
-		sm = new SkillMapperForSql();
-		try {
-			da = new DataAccessForSql();
-			fetchDepartmentSkills = sm.fetchDepartmentSkills(id, da);
-			da.close();
-		} catch (Exception exc){
-			IpsosLogger.getInstance().error(exc);
-		}
-		return fetchDepartmentSkills;
-	}
+//	@Override
+//	public List<Skill> fetchDepartmentSkills(int id) {
+//		DataAccess da = null;
+//		List<Skill> fetchDepartmentSkills = new ArrayList<>();
+//		sm = new SkillMapperForSql();
+//		try {
+//			da = new DataAccessForSql();
+//			fetchDepartmentSkills = sm.fetchDepartmentSkills(id, da);
+//			da.close();
+//		} catch (Exception exc){
+//			IpsosLogger.getInstance().error(exc);
+//		}
+//		return fetchDepartmentSkills;
+//	}
 
 }

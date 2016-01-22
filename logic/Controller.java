@@ -7,14 +7,14 @@ import domain.Employee;
 import domain.Skill;
 
 public interface Controller {
-//
+
 	public void createSkill(Skill skill);
 	
 	public void deleteSkill(Skill skill);
 	
 	public void updateSkill(Skill skill);
 	
-	public List<Skill> fetchDepartmentSkills(int id);
+//	public List<Skill> fetchDepartmentSkills();
 	
 	public void createDepartment(Department department);
 	
@@ -30,5 +30,5 @@ public interface Controller {
 	
 	public void addEmployeeSkill(Skill skill, Employee employee);
 	
-	public Employee fetchEmployee (int id);
+	public Employee getEmployeeProfile (int id);
 }
