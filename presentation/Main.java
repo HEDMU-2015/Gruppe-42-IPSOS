@@ -22,6 +22,7 @@ public class Main extends Application {
 		sc.loadScreen("menu", Screens.MENU);
 		
 		sc.setScreen("mainWindow");
+		
 		Group group = new Group();
 		group.getChildren().add(0, sc);
 		group.getChildren().add(1, sc.getScreen("menu"));
