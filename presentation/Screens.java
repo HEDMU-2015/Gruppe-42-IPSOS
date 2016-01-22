@@ -2,12 +2,13 @@ package presentation;
 
 public enum Screens {
 	//
+	MAIN_WINDOW_MENU("../presentation/fxml/MenuWithMainWindow.fxml"),
 	MAIN_WINDOW("../presentation/fxml/MainWindow.fxml"),
 	ADD_SKILL_TO_EMPLOYEE("../presentation/fxml/AddSkillToEmployee.fxml"),
 	DEPARTMENT_AND_SKILLS("../presentation/fxml/DepartmentAndSkills.fxml"),
 	EMPLOYEE_PROFILE("../presentation/fxml/EmployeeProfile.fxml"),
-	FIND_EMPLOYEE("../presentation/fxml/FindEmployee.fxml"),
-	MENU("../presentation/fxml/Menu.fxml");
+	FIND_EMPLOYEE("../presentation/fxml/FindEmployee.fxml");
+	
 	
 	private String fxmlPath;
 

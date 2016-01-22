@@ -1,8 +1,12 @@
 package presentation;
 
+import java.io.IOException;
+
 import javafx.application.Application;
-import javafx.scene.Group;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -19,14 +23,18 @@ public class Main extends Application {
 		sc.loadScreen("departmentAndSkills", Screens.DEPARTMENT_AND_SKILLS);
 		sc.loadScreen("employeeProfile", Screens.EMPLOYEE_PROFILE);
 		sc.loadScreen("findEmployee", Screens.FIND_EMPLOYEE);
-		sc.loadScreen("menu", Screens.MENU);
 		
 		sc.setScreen("mainWindow");
+		sc.toBack();
+		AnchorPane ancPane = null;
+		try {
+			 ancPane = FXMLLoader.load(getClass().getResource(Screens.MAIN_WINDOW_MENU.getPath()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		Group group = new Group();
-		group.getChildren().add(0, sc);
-		group.getChildren().add(1, sc.getScreen("menu"));
-		Scene scene = new Scene(group);
+		ancPane.getChildren().add(0, sc);
+		Scene scene = new Scene(ancPane);
 		stage.setScene(scene);
 		stage.show();
 	}
