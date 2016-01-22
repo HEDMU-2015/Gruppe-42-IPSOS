@@ -6,7 +6,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -16,6 +15,8 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
+		CreateIcon createIcon = new CreateIcon(stage);
+		createIcon.iconCreater();
 		ScreenController sc = new ScreenController();
 		sc.loadScreen("mainWindow", Screens.MAIN_WINDOW);
 		sc.loadScreen("addSkillToEmployee", Screens.ADD_SKILL_TO_EMPLOYEE);
