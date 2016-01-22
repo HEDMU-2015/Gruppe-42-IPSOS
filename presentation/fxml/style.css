@@ -1,0 +1,14 @@
+.menu {
+	-fx-background-color: #FBFCFC;
+}
+
+.menuBtn {
+	-fx-border-radius: 0;
+	-fx-text-fill : #737777;
+	-fx-background-color: transparent;
+	-fx-font-size: 14;
+}
+
+.menuBtn:hover {
+	-fx-background-color: #EFEFEF;
+}
