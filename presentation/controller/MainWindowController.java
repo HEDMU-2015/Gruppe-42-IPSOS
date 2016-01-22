@@ -16,7 +16,6 @@ import presentation.ScreenController;
 import presentation.Screens;
 
 public class MainWindowController implements Initializable, ControlledScreen {
-//
 	@FXML
 	private Button btnFindSkills;
 
