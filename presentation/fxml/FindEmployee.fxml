@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.FindEmployeeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.FindEmployeeController">
    <children>
-      <Button fx:id="btnFind" layoutX="230.0" layoutY="131.0" mnemonicParsing="false" onAction="#btnFind" prefHeight="35.0" prefWidth="66.0" text="Find" />
-      <ComboBox fx:id="comboSkill" layoutX="10.0" layoutY="10.0" prefWidth="150.0" />
+      <Button fx:id="btnFind" layoutX="456.0" layoutY="357.0" mnemonicParsing="false" onAction="#btnFind" prefHeight="35.0" prefWidth="66.0" stylesheets="@style.css" text="Find">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="blueBtn" />
+            <String fx:value="noBorderRadius" />
+         </styleClass></Button>
+      <ComboBox fx:id="comboSkill" layoutX="14.0" layoutY="10.0" prefHeight="30.0" prefWidth="218.0" promptText="Choose department" stylesheets="@style.css">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="blueBtn" />
+            <String fx:value="noBorderRadius" />
+            <String fx:value="combo-box" />
+         </styleClass></ComboBox>
+      <ComboBox fx:id="comboSkill1" disable="true" layoutX="304.0" layoutY="10.0" prefHeight="30.0" prefWidth="218.0" promptText="Choose skill" stylesheets="@style.css">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="blueBtn" />
+            <String fx:value="noBorderRadius" />
+         </styleClass></ComboBox>
+      <Label layoutX="14.0" layoutY="57.0" prefHeight="42.0" prefWidth="113.0" text="Label">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Button layoutX="101.0" layoutY="66.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" stylesheets="@style.css" text="x">
+         <styleClass>
+            <String fx:value="noBorderRadius" />
+            <String fx:value="transparentButton" />
+         </styleClass>
+      </Button>
    </children>
 </AnchorPane>

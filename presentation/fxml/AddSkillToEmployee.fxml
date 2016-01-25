@@ -4,10 +4,22 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="338.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.AddSkillToEmployeeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="114.0" prefWidth="404.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.AddSkillToEmployeeController">
    <children>
-      <ComboBox fx:id="comboDepartment" layoutX="14.0" layoutY="21.0" prefWidth="150.0" />
-      <Button fx:id="btnAdd" layoutX="144.0" layoutY="60.0" mnemonicParsing="false" onAction="#btnAdd" prefHeight="25.0" prefWidth="51.0" text="Add" />
-      <ComboBox fx:id="comboSkill" layoutX="174.0" layoutY="21.0" prefWidth="150.0" />
+      <ComboBox fx:id="comboDepartment" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="180.0" promptText="Choose department" stylesheets="@style.css">
+         <styleClass>
+            <String fx:value="blueBtn" />
+            <String fx:value="noBorderRadius" />
+         </styleClass></ComboBox>
+      <Button fx:id="btnAdd" disable="true" layoutX="340.0" layoutY="73.0" mnemonicParsing="false" onAction="#btnAdd" prefHeight="25.0" prefWidth="51.0" stylesheets="@style.css" text="Add">
+         <styleClass>
+            <String fx:value="blueBtn" />
+            <String fx:value="noBorderRadius" />
+         </styleClass></Button>
+      <ComboBox fx:id="comboSkill" disable="true" layoutX="211.0" layoutY="14.0" prefHeight="25.0" prefWidth="180.0" promptText="Choose skill" stylesheets="@style.css">
+         <styleClass>
+            <String fx:value="blueBtn" />
+            <String fx:value="noBorderRadius" />
+         </styleClass></ComboBox>
    </children>
 </AnchorPane>

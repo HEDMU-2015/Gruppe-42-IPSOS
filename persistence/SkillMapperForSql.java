@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import domain.Department;
 import domain.Skill;
 import exceptions.PersistenceFailureException;
 
@@ -86,13 +87,18 @@ public class SkillMapperForSql implements SkillMapper {
 		PreparedStatement statement = null;
 		ResultSet resultSet = null;
 		Skill skill = null;
-		String sql = "SELECT * FROM skills WHERE id = ?";
+		Department department = null;
+		String sql = "SELECT s.id, s.name, s.department_id, d.name AS department_name, d.parent_id "
+				+ "FROM skills AS s INNER JOIN departments AS d ON s.department_id = d.id "
+				+ "WHERE id = 1";
 		try {
 			statement = da.getConnection().prepareStatement(sql);
 			statement.setInt(1, id);
 			resultSet = statement.executeQuery();
 			if (resultSet.next()) {
-				skill = new Skill(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getInt("department_id"));
+				skill = new Skill(resultSet.getInt("id"), resultSet.getString("name"));
+				department = new Department(resultSet.getInt("id"), resultSet.getString("department_name"), resultSet.getInt("parent_id"));
+				skill.setDepartment(department);
 			}
 			resultSet.close();
 			statement.close();

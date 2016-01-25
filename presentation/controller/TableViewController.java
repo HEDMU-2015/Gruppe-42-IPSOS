@@ -9,13 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import presentation.AbstractFXMLController;
 import presentation.ControlledScreen;
-import presentation.CreateWindow;
 import presentation.ScreenController;
-import presentation.Screens;
 
-public class MainWindowController implements Initializable, ControlledScreen {
+public class TableViewController implements Initializable, ControlledScreen {
 	@FXML
 	private Button btnFindSkills;
 

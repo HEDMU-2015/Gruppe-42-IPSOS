@@ -13,7 +13,7 @@
             <Button fx:id="menu" stylesheets="@style.css" text="Menu">
                <styleClass>
                   <String fx:value="btn" />
-                  <String fx:value="openMenuBtn" />
+                  <String fx:value="blueBtn" />
                   <String fx:value="noBorderRadius" />
                </styleClass></Button>
             <TextField prefHeight="31.0" prefWidth="294.0" promptText="Insert employee name" stylesheets="@style.css" translateX="80.0">
@@ -23,10 +23,10 @@
                   <String fx:value="grayTextColor" />
                </styleClass>
             </TextField>
-            <Button fx:id="menu1" stylesheets="@style.css" text="Find" translateX="85.0">
+            <Button fx:id="findEmployeeByName" stylesheets="@style.css" text="Find" translateX="85.0">
                <styleClass>
                   <String fx:value="btn" />
-                  <String fx:value="openMenuBtn" />
+                  <String fx:value="blueBtn" />
                   <String fx:value="noBorderRadius" />
                </styleClass>
             </Button>
@@ -34,17 +34,17 @@
       </ToolBar>
       <AnchorPane fx:id="navList" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="180.0" styleClass="menu" stylesheets="@style.css" translateX="-180.0">
          <children>
-            <Button fx:id="findEmployeeBySkills" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@style.css" text="Find employee by skills">
+            <Button fx:id="findEmployeeBySkills" layoutY="14.0" mnemonicParsing="false" onAction="#findEmployeeBySkills" prefHeight="25.0" prefWidth="180.0" stylesheets="@style.css" text="Find employee by skills">
                <styleClass>
                   <String fx:value="menuBtn" />
                   <String fx:value="noBorderRadius" />
                </styleClass></Button>
-            <Button layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@style.css" text="Show all departments">
+            <Button fx:id="showAllDepartments" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@style.css" text="Show all departments">
                <styleClass>
                   <String fx:value="menuBtn" />
                   <String fx:value="noBorderRadius" />
                </styleClass></Button>
-            <Button layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@style.css" text="Show all skills">
+            <Button fx:id="showAllSkills" layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@style.css" text="Show all skills">
                <styleClass>
                   <String fx:value="menuBtn" />
                   <String fx:value="noBorderRadius" />

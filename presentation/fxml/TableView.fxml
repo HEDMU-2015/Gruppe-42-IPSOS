@@ -9,7 +9,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="536.0" style="-fx-background-color: null;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.MainWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="536.0" style="-fx-background-color: null;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.TableViewController">
    <children>
       <TableView fx:id="tableView" layoutX="10.0" layoutY="46.0" prefHeight="297.0" prefWidth="516.0" stylesheets="@style.css">
         <columns>
@@ -19,8 +19,8 @@
                   <String fx:value="table-view" />
                   <String fx:value="column-header" />
                </styleClass></TableColumn>
-          <TableColumn fx:id="email" prefWidth="218.0" text="Email" />
-            <TableColumn fx:id="skills" prefWidth="125.0" text="Skills" />
+          <TableColumn fx:id="email" prefWidth="218.0" styleClass="mainBackgroundColor" text="Email" />
+            <TableColumn fx:id="skills" prefWidth="125.0" styleClass="mainBackgroundColor" text="Skills" />
         </columns>
       </TableView>
    </children>

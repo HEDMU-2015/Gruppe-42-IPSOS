@@ -18,17 +18,22 @@ public class Main extends Application {
 		CreateIcon createIcon = new CreateIcon(stage);
 		createIcon.iconCreater();
 		ScreenController sc = new ScreenController();
-		sc.loadScreen("mainWindow", Screens.MAIN_WINDOW);
+		sc.loadScreen("tableView", Screens.TABLE_VIEW_WINDOW);
 		sc.loadScreen("addSkillToEmployee", Screens.ADD_SKILL_TO_EMPLOYEE);
 		sc.loadScreen("departmentAndSkills", Screens.DEPARTMENT_AND_SKILLS);
 		sc.loadScreen("employeeProfile", Screens.EMPLOYEE_PROFILE);
 		sc.loadScreen("findEmployee", Screens.FIND_EMPLOYEE);
-		
-		sc.setScreen("mainWindow");
+
+		sc.setScreen("tableView");
 		sc.toBack();
 		AnchorPane ancPane = null;
 		try {
-			 ancPane = FXMLLoader.load(getClass().getResource(Screens.MAIN_WINDOW_MENU.getPath()));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(Screens.MAIN_WINDOW_MENU.getPath()));
+			ancPane = (AnchorPane) loader.load();
+			ControlledScreen controlledScreen = (ControlledScreen) loader.getController();
+			controlledScreen.setScreenController(sc);
+			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

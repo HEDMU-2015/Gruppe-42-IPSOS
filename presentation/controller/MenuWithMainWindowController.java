@@ -29,12 +29,23 @@ public class MenuWithMainWindowController implements Initializable, ControlledSc
 	private ToolBar menuBar;
 	@FXML
 	private Button findEmployeeBySkills;
+	@FXML
+	private Button findEmployeeByName;
+	@FXML
+	private Button showAllDepartments;
+	@FXML
+	private Button showAllSkills;
+	
+	
 
 	private ScreenController screenController;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		prepareSlideMenuAnimation();
+		navList.setOnMouseClicked(e -> {
+			navList.setTranslateX(-180);
+		});
 	}
 
 	private void prepareSlideMenuAnimation() {
@@ -56,5 +67,12 @@ public class MenuWithMainWindowController implements Initializable, ControlledSc
 		this.screenController = screenController;
 
 	}
+	
+	public void findEmployeeBySkills(ActionEvent e) {
+		screenController.setScreen("findEmployee");
+		
+	}
+	
+	
 
 }
