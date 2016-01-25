@@ -39,7 +39,7 @@
                   <String fx:value="menuBtn" />
                   <String fx:value="noBorderRadius" />
                </styleClass></Button>
-            <Button fx:id="showAllDepartments" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="180.0" stylesheets="@style.css" text="All departments/skills">
+            <Button fx:id="AllDepartmentsAndSkills" layoutY="39.0" mnemonicParsing="false" onAction="#allDepartmentsAndSkills" prefHeight="25.0" prefWidth="180.0" stylesheets="@style.css" text="All departments/skills">
                <styleClass>
                   <String fx:value="menuBtn" />
                   <String fx:value="noBorderRadius" />
