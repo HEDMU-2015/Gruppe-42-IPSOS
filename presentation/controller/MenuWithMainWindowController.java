@@ -32,9 +32,7 @@ public class MenuWithMainWindowController implements Initializable, ControlledSc
 	@FXML
 	private Button findEmployeeByName;
 	@FXML
-	private Button showAllDepartments;
-	@FXML
-	private Button showAllSkills;
+	private Button AllDepartmentsAndSkills;
 	
 	
 
@@ -73,6 +71,8 @@ public class MenuWithMainWindowController implements Initializable, ControlledSc
 		
 	}
 	
-	
+	public void allDepartmentsAndSkills(ActionEvent e) {
+		screenController.setScreen("departmentAndSkills");
+	}
 
 }
