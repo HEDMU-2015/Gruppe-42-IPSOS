@@ -38,47 +38,47 @@ public class EmployeeMapperForSqlTest {
 	// }
 	// }
 
-	// @Test
-	// public void testFindEmployeeByName() {
-	// try {
-	// DataAccess da = new DataAccessForSql();
-	// EmployeeMapper emfs = new EmployeeMapperForSql();
-	// String name = "Rasmus".toLowerCase();
-	// List<Employee> employeeList = emfs.findEmployeeByName(name, da);
-	// da.commit();
-	// da.close();
-	// assertEquals(2, employeeList.size());
-	// } catch (PersistenceConnectionFailureException e) {
-	// e.printStackTrace();
-	// } catch (PersistenceFailureException e) {
-	// e.printStackTrace();
-	// } catch (PersistenceCommitFailureException e) {
-	// e.printStackTrace();
-	// }
-	// }
+	 @Test
+	 public void testFindEmployeeByName() {
+	 try {
+	 DataAccess da = new DataAccessForSql();
+	 EmployeeMapper emfs = new EmployeeMapperForSql();
+	 String name = "Rasmus".toLowerCase();
+	 List<Employee> employeeList = emfs.findEmployeeByName(name, da);
+	 da.commit();
+	 da.close();
+	 assertEquals(2, employeeList.size());
+	 } catch (PersistenceConnectionFailureException e) {
+	 e.printStackTrace();
+	 } catch (PersistenceFailureException e) {
+	 e.printStackTrace();
+	 } catch (PersistenceCommitFailureException e) {
+	 e.printStackTrace();
+	 }
+	 }
 
-	@Test
-	public void testAddEmployeeSkill() {
-		try {
-			DataAccess da = new DataAccessForSql();
-			EmployeeMapper emfs = new EmployeeMapperForSql();
-			Employee employee = new Employee("DepartmentTest");
-			employee.setParent_id(1);
-			emfs.addEmployeeSkill(employee, skill, da);
-			Employee newEmployeeSkill = emfs.getById(3, da);
-			da.commit();
-			da.close();
-			assertEquals(3, newEmployeeSkill.getId());
-			assertEquals("EmployeeSkillTest", newEmployeeSkill.getName());
-			assertEquals(1, newEmployeeSkill.getParent_id());
-		} catch (PersistenceConnectionFailureException e) {
-			e.printStackTrace();
-		} catch (PersistenceFailureException e) {
-			e.printStackTrace();
-		} catch (PersistenceCommitFailureException e) {
-			e.printStackTrace();
-		}
-	}
+//	@Test
+//	public void testAddEmployeeSkill() {
+//		try {
+//			DataAccess da = new DataAccessForSql();
+//			EmployeeMapper emfs = new EmployeeMapperForSql();
+//			Employee employee = new Employee("DepartmentTest");
+//			employee.setParent_id(1);
+//			emfs.addEmployeeSkill(employee, skill, da);
+//			Employee newEmployeeSkill = emfs.getById(3, da);
+//			da.commit();
+//			da.close();
+//			assertEquals(3, newEmployeeSkill.getId());
+//			assertEquals("EmployeeSkillTest", newEmployeeSkill.getName());
+//			assertEquals(1, newEmployeeSkill.getParent_id());
+//		} catch (PersistenceConnectionFailureException e) {
+//			e.printStackTrace();
+//		} catch (PersistenceFailureException e) {
+//			e.printStackTrace();
+//		} catch (PersistenceCommitFailureException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	// @Test
 	// public void testSetBindValues() {
 	// fail("Not yet implemented");
