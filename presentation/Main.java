@@ -23,8 +23,9 @@ public class Main extends Application {
 		sc.loadScreen("departmentAndSkills", Screens.DEPARTMENT_AND_SKILLS);
 		sc.loadScreen("employeeProfile", Screens.EMPLOYEE_PROFILE);
 		sc.loadScreen("findEmployee", Screens.FIND_EMPLOYEE);
+		sc.loadScreen("welcome", Screens.WELCOME_WINDOW);
 
-		sc.setScreen("tableView");
+		sc.setScreen("welcome");
 		sc.toBack();
 		AnchorPane ancPane = null;
 		try {
