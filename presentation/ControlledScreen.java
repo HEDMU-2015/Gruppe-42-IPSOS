@@ -2,6 +2,7 @@ package presentation;
 
 import java.util.List;
 
+import javafx.scene.Scene;
 import logic.Controller;
 
 public interface ControlledScreen {
@@ -17,4 +18,5 @@ public interface ControlledScreen {
 	public void setData(List<?> data);
 	
 	public void init();
+
 }

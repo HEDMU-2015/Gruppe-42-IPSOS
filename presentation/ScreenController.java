@@ -12,14 +12,15 @@ import javafx.scene.layout.StackPane;
 import logic.Controller;
 
 public class ScreenController extends StackPane {
-	Map<String, Node> map = new HashMap<>();
-	Map<String, ControlledScreen> csMap = new HashMap<>();
+	private Map<String, Node> map = new HashMap<>();
+	private Map<String, ControlledScreen> csMap = new HashMap<>();
 	private Controller appController;
-	Node newWindow = null;
+	private Node newWindow = null;
 
 	public ScreenController(Controller appController) {
 		super();
 		this.appController = appController;
+
 	}
 
 	public void loadScreen(String name, Screens fxmlPath) {

@@ -14,11 +14,11 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToolBar;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import logic.Controller;
@@ -41,17 +41,18 @@ public class MenuWithMainWindowController implements Initializable, ControlledSc
 	private Button AllDepartmentsAndSkills;
 	@FXML
 	private TextField inputName;
+	@FXML
+	private AnchorPane parent;
 
 	private ScreenController screenController;
 	private Controller appController;
 	List<?> data = null;
+	boolean menuOpen = false;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		prepareSlideMenuAnimation();
-		navList.setOnMouseClicked(e -> {
-			navList.setTranslateX(-180);
-		});
+		bindToEnter();
 	}
 
 	private void prepareSlideMenuAnimation() {
@@ -59,11 +60,20 @@ public class MenuWithMainWindowController implements Initializable, ControlledSc
 		openNav.setToX(0);
 		TranslateTransition closeNav = new TranslateTransition(new Duration(350), navList);
 		menu.setOnAction((ActionEvent evt) -> {
-			if (navList.getTranslateX() != 0) {
+			if (!menuOpen) {
 				openNav.play();
+				menuOpen = true;
 			} else {
 				closeNav.setToX(-(navList.getWidth()));
 				closeNav.play();
+				menuOpen = false;
+			}
+		});
+		parent.addEventFilter(MouseEvent.MOUSE_PRESSED, e -> {
+			if (menuOpen) {
+				closeNav.setToX(-(navList.getWidth()));
+				closeNav.play();
+				menuOpen = false;
 			}
 		});
 	}
@@ -89,10 +99,15 @@ public class MenuWithMainWindowController implements Initializable, ControlledSc
 	}
 
 	public void findEmployeeByName(ActionEvent e) {
-		if (!inputName.getText().isEmpty()) {
-			List<Employee> employees = appController.findEmployeeByName(inputName.getText().toLowerCase());
-			screenController.setScreen("tableViewByName", employees);
-		}
+		search();
+	}
+
+	public void bindToEnter() {
+		inputName.setOnKeyPressed(e -> {
+			if (e.getCode() == KeyCode.ENTER) {
+				search();
+			}
+		});
 	}
 
 	@Override
@@ -108,6 +123,15 @@ public class MenuWithMainWindowController implements Initializable, ControlledSc
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
+
 	}
+
+	public void search() {
+		if (!inputName.getText().isEmpty()) {
+			List<Employee> employees = appController.findEmployeeByName(inputName.getText().toLowerCase());
+			screenController.setScreen("tableViewByName", employees);
+		}
+
+	}
+
 }

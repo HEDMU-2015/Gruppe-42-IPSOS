@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import domain.Employee;
-import domain.Skill;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +23,7 @@ import logic.Controller;
 import presentation.ControlledScreen;
 import presentation.ScreenController;
 
-public class TableViewByNameController implements Initializable, ControlledScreen {
+public class TableViewBySkillsController implements Initializable, ControlledScreen {
 
 	@FXML
 	private TextField txtfieldName;
@@ -37,7 +36,7 @@ public class TableViewByNameController implements Initializable, ControlledScree
 	@FXML
 	private TableColumn skills;
 
-	List<Skill> data = null;
+	List<Employee> data = null;
 	ScreenController screenController;
 	private Controller appController;
 
@@ -47,7 +46,7 @@ public class TableViewByNameController implements Initializable, ControlledScree
 	}
 
 	public void btnFindEmployee(ActionEvent event) {
-		screenController.setScreen("tableViewBySkills");
+		screenController.setScreen("findEmployee");
 	}
 
 	@Override
@@ -67,7 +66,7 @@ public class TableViewByNameController implements Initializable, ControlledScree
 
 	@Override
 	public void setData(List<?> data) {
-		this.data = (List<Skill>) data;
+		this.data = (List<Employee>) data;
 	}
 
 	@Override

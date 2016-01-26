@@ -14,7 +14,7 @@ public interface Controller {
 	
 	public void updateSkill(Skill skill);
 	
-//	public List<Skill> fetchDepartmentSkills();
+	public List<Skill> fetchDepartmentSkills(int id);
 	
 	public void createDepartment(Department department);
 	

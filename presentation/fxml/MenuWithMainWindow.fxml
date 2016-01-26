@@ -6,22 +6,28 @@
 <?import java.lang.*?>
 <?import javafx.scene.*?>
 
-<AnchorPane layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="540.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.MenuWithMainWindowController">
+<AnchorPane fx:id="parent" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.MenuWithMainWindowController">
    <children>
-      <ToolBar fx:id="menuBar" layoutY="-50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="540.0" styleClass="menu" stylesheets="@style.css">
+      <ToolBar fx:id="menuBar" layoutY="-50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="536.0" styleClass="menu" stylesheets="@style.css">
          <items>
             <Button fx:id="menu" stylesheets="@style.css" text="Menu">
                <styleClass>
                   <String fx:value="btn" />
                   <String fx:value="blueBtn" />
                   <String fx:value="noBorderRadius" />
-               </styleClass></Button>
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <TextField fx:id="inputName" prefHeight="31.0" prefWidth="294.0" promptText="Insert employee name" stylesheets="@style.css" translateX="80.0">
                <styleClass>
                   <String fx:value="noBorderRadius" />
                   <String fx:value="textField" />
                   <String fx:value="grayTextColor" />
                </styleClass>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
             </TextField>
             <Button fx:id="findEmployeeByName" onAction="#findEmployeeByName" stylesheets="@style.css" text="Find" translateX="85.0">
                <styleClass>
@@ -29,21 +35,30 @@
                   <String fx:value="blueBtn" />
                   <String fx:value="noBorderRadius" />
                </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </items>
       </ToolBar>
-      <AnchorPane fx:id="navList" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="180.0" styleClass="menu" stylesheets="@style.css" translateX="-180.0">
+      <AnchorPane fx:id="navList" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="180.0" styleClass="menu" stylesheets="@style.css" translateX="-180.0">
          <children>
             <Button fx:id="findEmployeeBySkills" layoutY="14.0" mnemonicParsing="false" onAction="#findEmployeeBySkills" prefHeight="25.0" prefWidth="180.0" stylesheets="@style.css" text="Find employee by skills">
                <styleClass>
                   <String fx:value="menuBtn" />
                   <String fx:value="noBorderRadius" />
-               </styleClass></Button>
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Button fx:id="AllDepartmentsAndSkills" layoutY="39.0" mnemonicParsing="false" onAction="#allDepartmentsAndSkills" prefHeight="25.0" prefWidth="180.0" stylesheets="@style.css" text="All departments/skills">
                <styleClass>
                   <String fx:value="menuBtn" />
                   <String fx:value="noBorderRadius" />
-               </styleClass></Button>
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Label alignment="CENTER" layoutY="431.0" prefHeight="30.0" prefWidth="180.0" styleClass="menuBtn" stylesheets="@style.css" text="TMDR" textAlignment="CENTER" />
          </children>
       </AnchorPane>

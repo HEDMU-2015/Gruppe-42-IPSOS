@@ -44,7 +44,7 @@
 
 .textField {
 	-fx-text-box-border: transparent;
-	-fx-border-color: transparent transparent #737777 transparent;
+	-fx-border-color: transparent transparent #AEB2B2 transparent;
 	-fx-background-color: transparent;
 	-fx-focus-color: transparent;
 	-fx-background-insets: 0;
@@ -57,5 +57,18 @@
 .table-view .column-header .label {
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-background-color: #4AA3DF;
+}
+
+.underlined {
+	-fx-underline: true;
+}
+
+.notUnderlined {
+	-fx-underline: false;
+}
+
+.whiteBackground {
+	-fx-background-color: #F9F9F9;
 }
 

@@ -184,19 +184,19 @@ public class ControllerImpl implements Controller {
 		return fetchAllDepartments;
 	}
 
-//	@Override
-//	public List<Skill> fetchDepartmentSkills(int id) {
-//		DataAccess da = null;
-//		List<Skill> fetchDepartmentSkills = new ArrayList<>();
-//		sm = new SkillMapperForSql();
-//		try {
-//			da = new DataAccessForSql();
-//			fetchDepartmentSkills = sm.fetchDepartmentSkills(id, da);
-//			da.close();
-//		} catch (Exception exc){
-//			IpsosLogger.getInstance().error(exc);
-//		}
-//		return fetchDepartmentSkills;
-//	}
+	@Override
+	public List<Skill> fetchDepartmentSkills(int id) {
+		DataAccess da = null;
+		List<Skill> fetchDepartmentSkills = new ArrayList<>();
+		sm = new SkillMapperForSql();
+		try {
+			da = new DataAccessForSql();
+			fetchDepartmentSkills = sm.fetchDepartmentSkills(id, da);
+			da.close();
+		} catch (Exception exc){
+			IpsosLogger.getInstance().error(exc);
+		}
+		return fetchDepartmentSkills;
+	}
 
 }

@@ -31,13 +31,14 @@ public class Main extends Application {
 		sc.setScreen("welcome");
 		sc.toBack();
 		AnchorPane ancPane = null;
+		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(Screens.MAIN_WINDOW_MENU.getPath()));
 			ancPane = (AnchorPane) loader.load();
-			
 			ControlledScreen controlledScreen = (ControlledScreen) loader.getController();
 			controlledScreen.setScreenController(sc);
 			controlledScreen.setAppController(appController);
+			controlledScreen.init();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
