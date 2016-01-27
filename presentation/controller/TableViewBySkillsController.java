@@ -1,6 +1,7 @@
 package presentation.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -80,7 +81,7 @@ public class TableViewBySkillsController implements Initializable, ControlledScr
 			public TableCell call(final TableColumn<Employee, String> param) {
 				final TableCell<Employee, String> cell = new TableCell<Employee, String>() {
 
-					final Button btn = new Button("Show skills");
+					final Button btn = new Button();
 
 					@Override
 					public void updateItem(String item, boolean empty) {
@@ -89,6 +90,10 @@ public class TableViewBySkillsController implements Initializable, ControlledScr
 							setGraphic(null);
 							setText(null);
 						} else {
+							Employee employee = (Employee) getTableRow().getItem();
+							if (employee != null) {
+							btn.setText(String.valueOf(employee.getMatchingSkillsCount()) + ": Show skills");
+							}
 							btn.getStyleClass().add("transparentButton");
 							btn.setPadding(new Insets(0, 0, 0, 30));
 							btn.setOnMouseEntered(e -> {
@@ -100,7 +105,10 @@ public class TableViewBySkillsController implements Initializable, ControlledScr
 							});
 
 							btn.setOnAction((ActionEvent event) -> {
-								screenController.setScreen("employeeProfile");
+								// This list is not a boolean!
+								List<Employee> somethingThatWorks = new ArrayList<>();
+								somethingThatWorks.add(employee);
+								screenController.setScreen("employeeProfile", somethingThatWorks);
 							});
 							setGraphic(btn);
 							setText(null);

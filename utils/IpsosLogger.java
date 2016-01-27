@@ -26,7 +26,7 @@ public class IpsosLogger {
 				fw.write(level.toString() + ": " + message);
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("File not found!");
+			System.out.println("Log file not found!");
 		}
 
 	}

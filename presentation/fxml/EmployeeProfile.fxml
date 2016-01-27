@@ -7,15 +7,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="536.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controller.EmployeeProfileController">
    <children>
-      <Label fx:id="lblName" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="190.0" text="Name">
+      <Label layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="190.0" text="Name:">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="lblEmail" layoutX="10.0" layoutY="78.0" prefHeight="25.0" prefWidth="190.0" text="Email">
+      <Label layoutX="10.0" layoutY="78.0" prefHeight="25.0" prefWidth="190.0" text="Email:">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TreeView layoutX="259.0" layoutY="10.0" prefHeight="383.0" prefWidth="263.0" />
+      <TreeView fx:id="treeView" layoutX="259.0" layoutY="10.0" prefHeight="383.0" prefWidth="263.0" />
       <Button fx:id="btnAddSkill" layoutX="151.0" layoutY="322.0" mnemonicParsing="false" onAction="#btnAddSkill" prefHeight="30.0" prefWidth="98.0" stylesheets="@style.css" text="Add skill">
          <styleClass>
             <String fx:value="btn" />
@@ -28,12 +28,12 @@
             <String fx:value="blueBtn" />
             <String fx:value="noBorderRadius" />
          </styleClass></Button>
-      <Label fx:id="lblName1" layoutX="10.0" layoutY="35.0" prefHeight="25.0" prefWidth="190.0" text="[Name here]">
+      <Label fx:id="lblName" layoutX="10.0" layoutY="35.0" prefHeight="25.0" prefWidth="190.0" text="[Name here]">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblEmail1" layoutX="10.0" layoutY="103.0" prefHeight="25.0" prefWidth="190.0" text="[Email here]">
+      <Label fx:id="lblEmail" layoutX="10.0" layoutY="103.0" prefHeight="25.0" prefWidth="190.0" text="[Email here]">
          <font>
             <Font size="14.0" />
          </font>

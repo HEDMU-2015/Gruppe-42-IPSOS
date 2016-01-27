@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import domain.Department;
+import domain.Employee;
 import domain.Skill;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -38,6 +39,7 @@ public class FindEmployeeController implements Initializable, ControlledScreen {
 	private List<Department> departments = null;
 	private List<Skill> skills = null;
 	private List<Skill> chosenSkillsList = new ArrayList<>();
+	private List<Employee> employees = new ArrayList<>();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -45,7 +47,15 @@ public class FindEmployeeController implements Initializable, ControlledScreen {
 	}
 
 	public void btnFind(ActionEvent event) {
-		screenController.setScreen("tableViewBySkills", data);
+		if (!chosenSkillsList.isEmpty()) {
+			employees = appController.findEmployee(chosenSkillsList);
+			screenController.setScreen("tableViewBySkills", employees);
+			chosenSkillsList.removeAll(chosenSkillsList);
+			chosenSkills.getChildren().clear();
+			comboSkill.getItems().clear();
+			comboSkill.setDisable(true);
+		}
+		
 	}
 
 	@Override
@@ -87,13 +97,13 @@ public class FindEmployeeController implements Initializable, ControlledScreen {
 			if (comboSkill.isDisabled()) {
 				comboSkill.setDisable(false);
 			}
+			if(comboDepartment.getSelectionModel().selectedItemProperty().get() != null) {
 			loadSkills(comboDepartment.getSelectionModel().selectedItemProperty().get().getId());
-
+			}
 		});
 	}
 
 	public void addComboSkillListener() {
-		System.out.println(comboSkill);
 		comboSkill.getSelectionModel().selectedItemProperty().addListener(e -> {
 			Skill skill = comboSkill.getSelectionModel().selectedItemProperty().get();
 			if (skill != null && !listContains(chosenSkillsList, skill)) {

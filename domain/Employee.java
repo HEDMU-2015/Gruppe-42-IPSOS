@@ -5,9 +5,8 @@ import java.util.List;
 
 public class Employee {
 //
-	private int id;
-	private String name;
-	private String email;
+	private int id, matchingSkillsCount;
+	private String name, email;
 	private List<Skill> skills = new ArrayList<Skill>();
 	
 	public Employee(int id, String name, String email) {
@@ -51,6 +50,14 @@ public class Employee {
 
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
+	}
+
+	public int getMatchingSkillsCount() {
+		return matchingSkillsCount;
+	}
+
+	public void setMatchingSkillsCount(int matchingSkillsCount) {
+		this.matchingSkillsCount = matchingSkillsCount;
 	}
 
 	

@@ -22,6 +22,7 @@ public class Main extends Application {
 		createIcon.iconCreater();
 		ScreenController sc = new ScreenController(appController);
 		sc.loadScreen("tableViewByName", Screens.TABLE_VIEW_BY_NAME);
+		sc.loadScreen("tableViewBySkills", Screens.TABLE_VIEW_BY_SKILLS);
 		sc.loadScreen("addSkillToEmployee", Screens.ADD_SKILL_TO_EMPLOYEE);
 		sc.loadScreen("departmentAndSkills", Screens.DEPARTMENT_AND_SKILLS);
 		sc.loadScreen("employeeProfile", Screens.EMPLOYEE_PROFILE);

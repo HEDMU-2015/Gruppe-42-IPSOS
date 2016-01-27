@@ -25,7 +25,6 @@ public class DataAccessForSql implements DataAccess {
 			String dbUsername = props.get("dbUsername");
 			String dbPassword = props.get("dbPassword");
 			connection = DriverManager.getConnection(connectionUri, dbUsername, dbPassword);
-			connection.setAutoCommit(false);
 		} catch(FileNotFoundException exc) {
 			IpsosLogger.getInstance().error(exc);
 		} catch(SQLException exc) {
@@ -36,7 +35,6 @@ public class DataAccessForSql implements DataAccess {
 	public DataAccessForSql(String connectionUri, String dbUsername, String dbPassword) throws PersistenceConnectionFailureException {
 		try{
 			connection = DriverManager.getConnection(connectionUri, dbUsername, dbPassword);
-			connection.setAutoCommit(false);
 		} catch(SQLException exc) {
 			throw new PersistenceConnectionFailureException("Failed to connect to database");
 		}
@@ -77,6 +75,14 @@ public class DataAccessForSql implements DataAccess {
 			} catch(SQLException exc) {
 				// Should already be closed
 			}
+		}
+	}
+	
+	public void setAutoCommit(boolean bool) {
+		try {
+			connection.setAutoCommit(bool);
+		} catch (SQLException e) {
+			// This should never happen
 		}
 	}
 

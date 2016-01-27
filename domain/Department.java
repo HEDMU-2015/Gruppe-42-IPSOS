@@ -46,7 +46,9 @@ public class Department {
 		return name;
 	}
 	
-	
+	public boolean isChild() {
+		return this.parent_id != 0;
+	}
 	
 	
 	

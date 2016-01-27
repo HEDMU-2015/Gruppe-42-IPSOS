@@ -21,7 +21,7 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 			+ "FROM employees AS e INNER JOIN employee_skills AS es ON e.id = es.employee_id "
 			+ "INNER JOIN skills AS s ON es.skill_id = s.id "
 			+ "INNER JOIN departments AS d ON d.id = s.department_id "
-			+ "WHERE e.id = 1";
+			+ "WHERE e.id = ? ORDER BY s.department_id";
 
 	@Override
 	public List<Employee> findEmployee(List<Skill> skills, DataAccess da) throws PersistenceFailureException {
@@ -29,15 +29,15 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 		ResultSet resultSet = null;
 		List<Employee> employeeList = new ArrayList<>();
 
-		String select = "SELECT employees.name, employees.email,  COUNT(id) AS skills_count"
-				+ "FROM employees INNER JOIN employee_skills ON(employees.id = employee_skills.employee_id)";
+		String select = "SELECT employees.id, employees.name, employees.email,  COUNT(id) AS skills_count"
+				+ " FROM employees INNER JOIN employee_skills ON(employees.id = employee_skills.employee_id)";
 		String where = " WHERE employee_skills.skill_id IN(";
-		String groupBy = " GROUP BY employees.email, employees.name";
+		String groupBy = " GROUP BY employees.id, employees.email, employees.name";
 		String orderBy = " ORDER BY skills_count DESC";
 		String bindParams;
 
 		bindParams = createBindParams(skills) + ")";
-
+		
 		try {
 			statement = da.getConnection().prepareStatement(select + where + bindParams + groupBy + orderBy);
 			setBindValues(skills, statement);
@@ -45,6 +45,7 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 			while (resultSet.next()) {
 				Employee e = new Employee(resultSet.getInt("id"), resultSet.getString("name"),
 						resultSet.getString("email"));
+				e.setMatchingSkillsCount(resultSet.getInt("skills_count"));
 				employeeList.add(e);
 			}
 			resultSet.close();
@@ -99,9 +100,9 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 		int skillsSize = skills.size();
 		for (int i = 0; i < skillsSize; i++) {
 			Skill skill = skills.get(i);
-			if (i < skillsSize - 1) {
+			if (i <= skillsSize -1) {
 				try {
-					statement.setString(i + 1, skill.getName());
+					statement.setInt(i + 1, skill.getId());
 				} catch (SQLException e) {
 					e.printStackTrace();
 					throw new PersistenceFailureException("Something went wrong!");
@@ -113,13 +114,12 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 	@Override
 	public String createBindParams(List<Skill> skills) {
 		int skillsSize = skills.size();
-		String bindParams = null;
+		String bindParams = "";
 		for (int i = 0; i < skillsSize;) {
-			bindParams += "?,";
+			bindParams += "?, ";
 			i++;
 		}
-		bindParams.substring(0, -1);
-		return bindParams;
+		return bindParams.substring(0, bindParams.length()-2);
 	}
 
 	@Override
@@ -170,6 +170,7 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 		try {
 			da = new DataAccessForSql();
 			statement = da.getConnection().prepareStatement(GET_EMPLOYEE_PROFILE);
+			statement.setInt(1, id);
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				if (employee == null) {

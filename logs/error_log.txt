@@ -1,0 +1,7 @@
+ERROR: [27 januar 2016 - 10:03:31]nullString index out of range: -2
+ERROR: [27 januar 2016 - 10:03:36]nullString index out of range: -2
+ERROR: [27 januar 2016 - 10:04:24]nullString index out of range: -2
+ERROR: [27 januar 2016 - 10:06:17]nullString index out of range: -2
+ERROR: [27 januar 2016 - 10:50:55]nullFailed to connect to database
+ERROR: [27 januar 2016 - 11:36:07]nullnull
+ERROR: [27 januar 2016 - 11:37:24]nullnull

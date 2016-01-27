@@ -1,11 +1,11 @@
 package presentation.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import domain.Employee;
-import domain.Skill;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,17 +37,13 @@ public class TableViewByNameController implements Initializable, ControlledScree
 	@FXML
 	private TableColumn skills;
 
-	List<Skill> data = null;
+	List<Employee> data = null;
 	ScreenController screenController;
 	private Controller appController;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-	}
-
-	public void btnFindEmployee(ActionEvent event) {
-		screenController.setScreen("tableViewBySkills");
 	}
 
 	@Override
@@ -67,7 +63,7 @@ public class TableViewByNameController implements Initializable, ControlledScree
 
 	@Override
 	public void setData(List<?> data) {
-		this.data = (List<Skill>) data;
+		this.data = (List<Employee>) data;
 	}
 
 	@Override
@@ -101,7 +97,11 @@ public class TableViewByNameController implements Initializable, ControlledScree
 							});
 
 							btn.setOnAction((ActionEvent event) -> {
-								screenController.setScreen("employeeProfile");
+								Employee employee = (Employee) getTableRow().getItem();
+								// This list is not a boolean!
+								List<Employee> somethingThatWorks = new ArrayList<>();
+								somethingThatWorks.add(employee);
+								screenController.setScreen("employeeProfile", somethingThatWorks);
 							});
 							setGraphic(btn);
 							setText(null);
