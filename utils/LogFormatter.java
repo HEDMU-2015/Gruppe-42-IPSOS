@@ -9,7 +9,7 @@ public class LogFormatter {
 	public static String formatException(Exception exception) {
 		
 		String output = "[" + LocalDateTime.now().format(DateTimeFormatter.ofPattern("d MMMM u - H:mm:ss")) + "]"
-		+ exception.getCause() + exception.getMessage() + System.lineSeparator();
+		+ exception.getMessage() + System.lineSeparator();
 		return output;
 	}
 }

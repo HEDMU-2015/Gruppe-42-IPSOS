@@ -21,9 +21,11 @@ public class IpsosLogger {
 			case ERROR:
 				fw = new IpsosFileWriter(Settings.ERROR_LOG_PATH);
 				fw.write(level.toString() + ": " + message);
+				break;
 			case INFO:
 				fw = new IpsosFileWriter(Settings.INFO_LOG_PATH);
 				fw.write(level.toString() + ": " + message);
+				break;
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("Log file not found!");

@@ -30,5 +30,7 @@ public interface Controller {
 	
 	public void addEmployeeSkill(Skill skill, Employee employee);
 	
+	public void removeEmployeeSkill(Skill skill, Employee employee);
+	
 	public Employee getEmployeeProfile (int id);
 }

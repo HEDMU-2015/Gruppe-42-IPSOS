@@ -27,6 +27,11 @@ employee_id INT REFERENCES employees(id) ON DELETE CASCADE,
 skill_id INT REFERENCES skills(id) ON DELETE CASCADE
 );
 
+CREATE TABLE employees_departments (
+employee_id INT REFERENCES employees(id) ON DELETE CASCADE,
+department_id INT REFERENCES departments(id) ON DELETE CASCADE
+);
+
 SELECT employees.name, employees.email,  COUNT(id)
 AS skills_count
 FROM employees
@@ -47,3 +52,10 @@ INNER JOIN employee_skills AS es ON e.id = es.employee_id
 INNER JOIN skills AS s ON es.skill_id = s.id
 INNER JOIN departments AS d ON d.id = s.department_id
 WHERE e.id = 1
+
+WITH RECURSIVE tree (level, parent, child) AS (
+SELECT 1, parent_id AS parent, id AS child FROM departments where id = 1
+UNION
+SELECT level + 1, parent_id, id FROM departments, tree
+WHERE parent_id = child
+) SELECT * FROM tree;

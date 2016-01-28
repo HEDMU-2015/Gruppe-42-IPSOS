@@ -199,4 +199,18 @@ public class ControllerImpl implements Controller {
 		return fetchDepartmentSkills;
 	}
 
+	@Override
+	public void removeEmployeeSkill(Skill skill, Employee employee) {
+		DataAccess da = null;
+		em = new EmployeeMapperForSql();
+		try {
+			da = new DataAccessForSql();
+			em.removeEmployeeSkill(employee, skill, da);
+			da.commit();
+			da.close();
+		} catch (Exception exc){
+			IpsosLogger.getInstance().error(exc);
+		}
+	}
+
 }

@@ -1,10 +1,15 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Department {
 //
 	String name;
 	int parent_id;
 	int id;
+	List<Department> children = new ArrayList<>();
+	Department parent = null;
 	
 	
 	public Department(int id, String name, int parent_id) {
@@ -50,7 +55,31 @@ public class Department {
 		return this.parent_id != 0;
 	}
 	
+	public void addChild(Department department) {
+		this.children.add(department);
+	}
+
+	public List<Department> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<Department> children) {
+		this.children = children;
+	}
+
+	public Department getParent() {
+		return parent;
+	}
+
+	public void setParent(Department parent) {
+		this.parent = parent;
+	}
 	
+	public void printChildren() {
+		for(Department department : children) {
+			System.out.println(" " + department);
+		}
+	}
 	
 
 }

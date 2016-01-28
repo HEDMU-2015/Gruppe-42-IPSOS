@@ -2,7 +2,7 @@ package presentation;
 
 import java.util.List;
 
-import javafx.scene.Scene;
+import javafx.stage.Stage;
 import logic.Controller;
 
 public interface ControlledScreen {
@@ -18,5 +18,9 @@ public interface ControlledScreen {
 	public void setData(List<?> data);
 	
 	public void init();
+	
+	default public void setStage(Stage stage) {
+		
+	}
 
 }
