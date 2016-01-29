@@ -1,15 +1,15 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Department {
 //
 	String name;
 	int parent_id;
 	int id;
-	List<Department> children = new ArrayList<>();
-	Department parent = null;
+	Map<Integer, Department> children = new HashMap<>();
 	
 	
 	public Department(int id, String name, int parent_id) {
@@ -55,31 +55,16 @@ public class Department {
 		return this.parent_id != 0;
 	}
 	
-	public void addChild(Department department) {
-		this.children.add(department);
+	public void addChild(Integer id, Department department) {
+		this.children.put(id, department);
 	}
 
-	public List<Department> getChildren() {
+	public Map<Integer, Department> getChildren() {
 		return children;
 	}
 
-	public void setChildren(List<Department> children) {
+	public void setChildren(Map<Integer, Department> children) {
 		this.children = children;
 	}
-
-	public Department getParent() {
-		return parent;
-	}
-
-	public void setParent(Department parent) {
-		this.parent = parent;
-	}
-	
-	public void printChildren() {
-		for(Department department : children) {
-			System.out.println(" " + department);
-		}
-	}
-	
 
 }
