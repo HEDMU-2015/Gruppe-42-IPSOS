@@ -4,10 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import domain.Department;
+import exceptions.PersistenceConnectionFailureException;
 import exceptions.PersistenceFailureException;
+import utils.IpsosLogger;
 //@Author Martin
 public class DepartmentMapperForSql implements DepartmentMapper{
 //
@@ -111,6 +115,27 @@ public class DepartmentMapperForSql implements DepartmentMapper{
 			throw new PersistenceFailureException("Query has failed!");
 		}
 		return department;
+	}
+
+	@Override
+	public Map<Integer, Department> fetchEmployeeDepartments(int id, DataAccess da) throws PersistenceFailureException {
+		Map<Integer, Department> map = new HashMap<>();
+		try {
+			PreparedStatement stmt = da.getConnection().prepareStatement("SELECT d.id, d.name, d.parent_id FROM departments AS d "
+					+ "INNER JOIN employees_departments AS ed ON(ed.department_id = d.id) "
+					+ "WHERE ed.employee_id = ? ORDER BY d.parent_id");
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Department d = new Department(rs.getString("name"));
+				d.setId(rs.getInt("id"));
+				d.setParent_id(rs.getInt("parent_id"));
+				map.put(d.getId(), d);
+			}
+		} catch (SQLException e) {
+			IpsosLogger.getInstance().error(e);
+		}
+		return map;
 	}
 
 }

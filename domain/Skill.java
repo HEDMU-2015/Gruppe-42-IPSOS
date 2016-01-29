@@ -5,6 +5,7 @@ public class Skill {
 	int id;
 	String name;
 	Department department;
+	int departmentId;
 	
 	public Skill(int id, String name) {
 		this.id = id;
@@ -42,6 +43,14 @@ public class Skill {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
 	}
 	
 	

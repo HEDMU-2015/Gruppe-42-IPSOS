@@ -1,10 +1,13 @@
 package logic;
 
 import java.util.List;
+import java.util.Map;
 
 import domain.Department;
 import domain.Employee;
 import domain.Skill;
+import exceptions.PersistenceFailureException;
+import persistence.DataAccess;
 
 public interface Controller {
 
@@ -33,4 +36,8 @@ public interface Controller {
 	public void removeEmployeeSkill(Skill skill, Employee employee);
 	
 	public Employee getEmployeeProfile (int id);
+	
+	public Map<Integer, Department> fetchEmployeeDepartments(int id);
+	
+	public List<Skill> fetchEmployeeSkills(int id);
 }

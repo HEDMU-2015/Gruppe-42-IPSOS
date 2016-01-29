@@ -1,6 +1,7 @@
 package persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import domain.Department;
 import exceptions.PersistenceFailureException;
@@ -16,5 +17,9 @@ public interface DepartmentMapper {
 	public List<Department> fetchAllDepartments(DataAccess da)throws PersistenceFailureException;
 	
 	public Department getById(int id, DataAccess da) throws PersistenceFailureException;
+	
+	public Map<Integer, Department> fetchEmployeeDepartments(int id, DataAccess da) throws PersistenceFailureException;
+	
+	
 	
 }

@@ -10,5 +10,6 @@ public interface DataAccess {
 	public void commit() throws PersistenceCommitFailureException;
 	public void rollback();
 	public void close();	
+	public void setAutoCommit(boolean bool);
 	
 }

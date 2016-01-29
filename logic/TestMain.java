@@ -21,48 +21,38 @@ public class TestMain {
 		for (Integer integer : keysToRemove) {
 			tree.remove(integer);
 		}
-		printTree(tree, new Integer(0));
+		printTree(tree, "");
 		// Iterator<Integer> itr =
-		// tree.get(2).getChildren().get(4).getChildren().keySet().iterator();
+		// tree.get(1).getChildren().keySet().iterator();
 		// while(itr.hasNext()) {
 		// Department d =
-		// tree.get(2).getChildren().get(4).getChildren().get(itr.next());
+		// tree.get(itr.next());
 		// System.out.println(d.getName());
 		// }
 	}
 
-	public static void buildTree(Map<Integer, Department> tree) {
-		Iterator<Integer> itr = tree.keySet().iterator();
+	public static void buildTree(Map<Integer, Department> map) {
+		Iterator<Integer> itr = map.keySet().iterator();
 		while (itr.hasNext()) {
-			Department d = tree.get(itr.next());
+			Department d = map.get(itr.next());
 			int parent_id = d.getParent_id();
-			if (tree.containsKey(parent_id)) {
-				tree.get(parent_id).addChild(d.getId(), d);
+			if (map.containsKey(parent_id)) {
+				map.get(parent_id).addChild(d.getId(), d);
 				if (parent_id > 0) {
 					keysToRemove.add(d.getId());
 				}
-				buildTree(tree.get(parent_id).getChildren());
+				buildTree(map.get(parent_id).getChildren());
 			}
 		}
 	}
 
-	public static void printTree(Map<Integer, Department> tree, Integer level) {
+	public static void printTree(Map<Integer, Department> tree, String de) {
 		Iterator<Integer> itr = tree.keySet().iterator();
 		while (itr.hasNext()) {
 			Department d = tree.get(itr.next());
+			System.out.println(de + d.getName());
 			if (!d.getChildren().isEmpty()) {
-				if (level == 0) {
-					System.out.println(d.getName());
-					level++;
-				} else {
-					if (d.getParent_id() == 0) {
-						level = 0;
-					}
-					System.out.println(String.join("", Collections.nCopies(level++, " ")) + d.getName());
-				}
-				printTree(d.getChildren(), level);
-			} else {
-				System.out.println(String.join("", Collections.nCopies(level--, " ")) + d.getName());
+				printTree(d.getChildren(), de + " ");
 			}
 		}
 	}

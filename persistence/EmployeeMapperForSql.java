@@ -190,4 +190,29 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 		}
 		return employee;
 	}
+
+	@Override
+	public List<Skill> fetchEmployeeSkills(int id, DataAccess da) throws PersistenceFailureException {
+		List<Skill> skills = new ArrayList<>();
+		PreparedStatement statement = null;
+		ResultSet resultSet = null;
+		try {
+			statement = da.getConnection().prepareStatement("SELECT s.id, s.name, s.department_id FROM skills AS s " 
+					+ "INNER JOIN employee_skills AS es ON(s.id = es.skill_id) "
+					+ "WHERE es.employee_id = ?");
+			statement.setInt(1, id);
+			resultSet = statement.executeQuery();
+			while (resultSet.next()) {
+				Skill skill = new Skill(resultSet.getString("name"));
+				skill.setId(resultSet.getInt("id"));
+				skill.setDepartmentId(resultSet.getInt("department_id"));
+				skills.add(skill);
+			}
+			statement.close();
+			resultSet.close();
+		} catch (SQLException exc) {
+			throw new PersistenceFailureException("Query has failed");
+		}
+		return skills;
+	}
 }

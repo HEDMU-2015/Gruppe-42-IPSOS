@@ -2,10 +2,12 @@ package logic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import domain.Department;
 import domain.Employee;
 import domain.Skill;
+import exceptions.PersistenceFailureException;
 import persistence.DataAccess;
 import persistence.DataAccessForSql;
 import persistence.DepartmentMapper;
@@ -205,12 +207,44 @@ public class ControllerImpl implements Controller {
 		em = new EmployeeMapperForSql();
 		try {
 			da = new DataAccessForSql();
+			da.setAutoCommit(false);
 			em.removeEmployeeSkill(employee, skill, da);
 			da.commit();
 			da.close();
 		} catch (Exception exc){
 			IpsosLogger.getInstance().error(exc);
 		}
+	}
+
+	@Override
+	public Map<Integer, Department> fetchEmployeeDepartments(int id) {
+		DataAccess da = null;
+		dm = new DepartmentMapperForSql();
+		Map<Integer, Department> map = null;
+		try {
+			da = new DataAccessForSql();
+			map = dm.fetchEmployeeDepartments(id, da);
+			da.commit();
+			da.close();
+		} catch (Exception exc){
+			IpsosLogger.getInstance().error(exc);
+		}
+		return map;
+	}
+
+	@Override
+	public List<Skill> fetchEmployeeSkills(int id) {
+		DataAccess da = null;
+		em = new EmployeeMapperForSql();
+		List<Skill> skills = null;
+		try {
+			da = new DataAccessForSql();
+			skills = em.fetchEmployeeSkills(id, da);
+			da.close();
+		} catch (Exception exc){
+			IpsosLogger.getInstance().error(exc);
+		}
+		return skills;
 	}
 
 }

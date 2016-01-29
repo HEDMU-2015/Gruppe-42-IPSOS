@@ -2,3 +2,9 @@ ERROR: [28 januar 2016 - 11:11:50]nullFailed to connect to database
 ERROR: [28 januar 2016 - 11:12:44]nullFailed to connect to database
 ERROR: [28 januar 2016 - 11:13:59]Failed to connect to database
 : [28 januar 2016 - 11:15:50]Failed to connect to database
+ERROR: [29 januar 2016 - 11:46:56]Query has failed
+ERROR: [29 januar 2016 - 11:47:56]Query has failed
+ERROR: [29 januar 2016 - 11:49:10]Query has failed
+ERROR: [29 januar 2016 - 11:49:10]Query has failed
+ERROR: [29 januar 2016 - 11:50:50]Query has failed
+ERROR: [29 januar 2016 - 11:50:50]Query has failed
