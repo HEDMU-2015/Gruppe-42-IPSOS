@@ -8,3 +8,7 @@ ERROR: [29 januar 2016 - 11:49:10]Query has failed
 ERROR: [29 januar 2016 - 11:49:10]Query has failed
 ERROR: [29 januar 2016 - 11:50:50]Query has failed
 ERROR: [29 januar 2016 - 11:50:50]Query has failed
+ERROR: [4 februar 2016 - 10:53:39]Query has failed, try again!
+ERROR: [4 februar 2016 - 10:54:48]Query has failed, try again!
+ERROR: [1 marts 2016 - 9:07:15]Failed to connect to database
+ERROR: [1 marts 2016 - 9:07:46]Failed to connect to database

@@ -63,8 +63,8 @@ public class EmployeeMapperForSql implements EmployeeMapper {
 		ResultSet resultSet = null;
 		List<Employee> profileList = new ArrayList<>();
 		try {
-			statement = da.getConnection().prepareStatement("SELECT * FROM employees WHERE LOWER(name) = ?");
-			statement.setString(1, name);
+			statement = da.getConnection().prepareStatement("SELECT * FROM employees WHERE LOWER(name) LIKE ?");
+			statement.setString(1, "%" + name + "%");
 			resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				Employee e = new Employee(resultSet.getInt("id"), resultSet.getString("name"),

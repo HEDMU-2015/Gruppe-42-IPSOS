@@ -1,10 +1,6 @@
 package junittest;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-
-import java.util.List;
 
 import org.junit.Test;
 
@@ -30,29 +26,29 @@ public class SkillMapperForSqlTest {
 		}
 	}
 
-	// @Test
-	// public void createSkillTest() {
-	// // Remember to test with real id's, names and department id's.
-	// try {
-	// DataAccess da = new DataAccessForSql();
-	// SkillMapperForSql smfs = new SkillMapperForSql();
-	// Skill skill = new Skill("Python19");
-	// skill.setDepartmentId(1);
-	// smfs.createSkill(skill, da);
-	// Skill newSkill = smfs.getById(19, da);
-	// da.commit();
-	// da.close();
-	// System.out.println(newSkill.getName());
-	// assertEquals(19, newSkill.getId());
-	// assertEquals("Python19", newSkill.getName());
-	// } catch (PersistenceConnectionFailureException e) {
-	// e.printStackTrace();
-	// } catch (PersistenceFailureException e) {
-	// e.printStackTrace();
-	// } catch (PersistenceCommitFailureException e) {
-	// e.printStackTrace();
-	// }
-	// }
+	 @Test
+	 public void createSkillTest() {
+	 // Remember to test with real id's, names and department id's.
+	 try {
+	 DataAccess da = new DataAccessForSql();
+	 SkillMapperForSql smfs = new SkillMapperForSql();
+	 Skill skill = new Skill("Python19");
+	 skill.setDepartmentId(1);
+	 smfs.createSkill(skill, da);
+	 Skill newSkill = smfs.getById(19, da);
+	 da.commit();
+	 da.close();
+	 System.out.println(newSkill.getName());
+	 assertEquals(19, newSkill.getId());
+	 assertEquals("Python19", newSkill.getName());
+	 } catch (PersistenceConnectionFailureException e) {
+	 e.printStackTrace();
+	 } catch (PersistenceFailureException e) {
+	 e.printStackTrace();
+	 } catch (PersistenceCommitFailureException e) {
+	 e.printStackTrace();
+	 }
+	 }
 
 	// @Test
 	// public void deleteSkillTest() {
